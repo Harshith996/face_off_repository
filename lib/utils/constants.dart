@@ -1,19 +1,16 @@
 // ignore_for_file: constant_identifier_names
 
 class CustomColors {
-  // static const background = 0xFFFF999F;
+  // black background
   static const background = 0xFF000000;
-  // static const secondaryColor = 0xFFFFC2C2;
-  static const secondaryColor = 0xFFD9D9D9;
-  // static const accent = 0xFFF4C969;
-  static const accent = 0xFFD9D9D9;
-  static const dark_background = 0xFFFD5B64;
-  static const aesthetic_yellow = 0xFFFBF093;
-  static const aesthetic_green = 0xFFC1FFBF;
-  static const aesthetic_blue = 0xFFB3FAFA;
-  static const aesthetic_dark_gray = 0xFF697264;
-  static const aesthetic_red = 0xCCF81313;
-  static const aesthetic_purple = 0xFF5C00F2;
+  // faceoff green
+  static const green = 0xFF7DFF00;
+  // faceoff blue
+  static const blue = 0xFF00FFFF;
+   // faceoff grey (mostly for buttons)
+  static const grey = 0xFF2F2F2F;
+   // faceoff white
+  static const white = 0xFFFFFFFF;
 }
 
 class WebConstants {
