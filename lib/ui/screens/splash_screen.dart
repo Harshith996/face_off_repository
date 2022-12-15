@@ -44,7 +44,7 @@ class _SplashScreenState extends State<SplashScreen> {
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 60,
-                          color: Color(CustomColors.accent))),
+                          color: Color(CustomColors.background))),
                 ],
               ),
             ),

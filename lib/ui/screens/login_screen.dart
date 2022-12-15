@@ -20,7 +20,7 @@ class _LoginPageState extends State<LoginPage> {
           child: CircularGradientBorder(
               const CircleAvatar(
                 radius: 80,
-                backgroundColor: Color(CustomColors.aesthetic_red),
+                backgroundColor: Color(CustomColors.green),
               ),
               100),
         )));
