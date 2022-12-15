@@ -7,6 +7,6 @@ import 'package:flutter/material.dart';
 Widget CircularGradientBorder(Widget item, double radius) =>
     CircularTopDownGradient(
         radius: radius,
-        color1: const Color(CustomColors.background),
-        color2: const Color(CustomColors.accent),
+        color1: const Color(CustomColors.green),
+        color2: const Color(CustomColors.blue),
         child: item);
