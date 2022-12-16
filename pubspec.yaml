@@ -61,6 +61,7 @@ flutter:
   uses-material-design: true
   assets:
    - assets/images/spirit_animal/
+   - assets/images/tick_mark/
    - assets/images/
    - assets/images/profile_pictures/
 
