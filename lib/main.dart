@@ -1,3 +1,4 @@
+import 'package:face_off/ui/screens/create_profile_1.dart';
 import 'package:face_off/ui/screens/question_page.dart';
 import 'package:flutter/material.dart';
 
@@ -17,7 +18,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: const QuestionPage(),
+      home: const CreateProfile(),
     );
   }
 }
