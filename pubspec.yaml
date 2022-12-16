@@ -63,6 +63,7 @@ flutter:
    - assets/images/spirit_animal/
    - assets/images/tick_mark/
    - assets/images/
+   - assets/images/profile_pictures/
 
   # To add assets to your application, add an assets section, like this:
   # assets:
