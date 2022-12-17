@@ -1,3 +1,4 @@
+import 'package:face_off/ui/screens/enter_details_page.dart';
 import 'package:face_off/ui/screens/profile_complete_page.dart';
 import 'package:face_off/ui/screens/create_profile_1.dart';
 import 'package:face_off/ui/screens/question_page.dart';
@@ -19,9 +20,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
-      home: LoginPage(),
- 
+      home: const EnterDetails(), 
     );
   }
 }
