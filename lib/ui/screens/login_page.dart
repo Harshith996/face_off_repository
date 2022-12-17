@@ -26,17 +26,26 @@ class LoginPage extends StatelessWidget {
               const SizedBox(height: 50),
 
               // logo
-              const Text (
-                'Faceoff',
+              Row(children: const [
+                Text (
+                'Face',
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 40,
                 ),
               ),
+                Text(
+                  'Off',
+                style: TextStyle(
+                  color: Color(CustomColors.green),
+                  fontSize: 40,
+                ),
+                )
+              ],
+              ),
+              
 
               const SizedBox(height: 50),
-
-              // welcome back, you've been missed!
                Text(
                 'Welcome back to Faceoff',
                 style: TextStyle(
@@ -82,7 +91,7 @@ class LoginPage extends StatelessWidget {
               const SizedBox(height: 25),
 
               // sign in button
-              WideDarkBackgroundButton(displayText: 'Log In'),
+              WideDarkBackgroundButton(displayText: 'Sign In'),
 
               const SizedBox(height: 50),
 
@@ -115,18 +124,16 @@ class LoginPage extends StatelessWidget {
               ),
 
               const SizedBox(height: 50),
-
-              // google + apple sign in buttons
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: const [
                   // google button
-                  SquareTile(imagePath: 'lib/images/google.png'),
+                  SquareTile(imagePath: 'assets/images/apple.jpeg'),
 
                   SizedBox(width: 25),
 
                   // apple button
-                  SquareTile(imagePath: 'lib/images/apple.png')
+                  SquareTile(imagePath: 'assets/images/google.png')
                 ],
               ),
 
