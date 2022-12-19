@@ -21,7 +21,7 @@ class _MeetupDecisionPageState extends State<MeetupDecisionPage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const Text(
-                'Match Found',
+                'Success!',
                 style: TextStyle(
                     color: Color(CustomColors.white),
                     fontSize: 35,

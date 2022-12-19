@@ -21,7 +21,7 @@ class _RevealDecisionPageState extends State<RevealDecisionPage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const Text(
-                'Match Found',
+                'Face off!',
                 style: TextStyle(
                     color: Color(CustomColors.white),
                     fontSize: 35,
