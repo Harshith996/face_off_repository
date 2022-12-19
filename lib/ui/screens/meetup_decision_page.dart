@@ -3,14 +3,14 @@ import 'package:face_off/ui/shared/widgets/circular_gradient_border.dart';
 import 'package:face_off/utils/constants.dart';
 import 'package:flutter/material.dart';
 
-class RevealDecisionPage extends StatefulWidget {
-  const RevealDecisionPage({Key? key}) : super(key: key);
+class MeetupDecisionPage extends StatefulWidget {
+  const MeetupDecisionPage({Key? key}) : super(key: key);
 
   @override
-  State<RevealDecisionPage> createState() => _RevealDecisionPageState();
+  State<MeetupDecisionPage> createState() => _MeetupDecisionPageState();
 }
 
-class _RevealDecisionPageState extends State<RevealDecisionPage> {
+class _MeetupDecisionPageState extends State<MeetupDecisionPage> {
   @override
   Widget build(BuildContext context) {
     return (Scaffold(
@@ -34,7 +34,7 @@ class _RevealDecisionPageState extends State<RevealDecisionPage> {
                   CircleAvatar(
                     radius: 100,
                     backgroundImage: Image.asset(
-                            'assets/images/profile_pictures/anonymous_icon_1.jpg')
+                            'assets/images/profile_pictures/profile_pic_2.jpg')
                         .image,
                   ),
                   105),
@@ -42,17 +42,27 @@ class _RevealDecisionPageState extends State<RevealDecisionPage> {
                 height: 20,
               ),
               const Text(
-                'Anonymous 1',
+                'Anonymous 1 is...',
                 style: TextStyle(
                     fontSize: 30,
                     fontWeight: FontWeight.bold,
                     color: Color(CustomColors.white)),
               ),
               const SizedBox(
-                height: 60,
+                height: 30,
               ),
               const Text(
-                'Do you want to reveal your identity?',
+                'Adithya Bharath',
+                style: TextStyle(
+                    fontSize: 25,
+                    fontWeight: FontWeight.bold,
+                    color: Color(CustomColors.white)),
+              ),
+              const SizedBox(
+                height: 30,
+              ),
+              const Text(
+                'Do you want to meet Adithya?',
                 style:
                     TextStyle(color: Color(CustomColors.white), fontSize: 18),
               ),
@@ -69,7 +79,7 @@ class _RevealDecisionPageState extends State<RevealDecisionPage> {
                     textAlign: TextAlign.center,
                     text: const TextSpan(text: '', children: <TextSpan>[
                       TextSpan(
-                          text: 'Your identity will ',
+                          text: 'You will ',
                           style: TextStyle(
                               color: Color(CustomColors.white), fontSize: 18)),
                       TextSpan(
@@ -79,7 +89,8 @@ class _RevealDecisionPageState extends State<RevealDecisionPage> {
                               fontSize: 18,
                               fontWeight: FontWeight.bold)),
                       TextSpan(
-                          text: 'be revealed if your chatting partner says no.',
+                          text:
+                              'be able to schedule a meeting if your chatting partner says no.',
                           style: TextStyle(
                               color: Color(CustomColors.white), fontSize: 18))
                     ])),
