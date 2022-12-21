@@ -7,10 +7,14 @@ class CustomColors {
   static const green = 0xFF7DFF00;
   // faceoff blue
   static const blue = 0xFF00FFFF;
-   // faceoff grey (mostly for buttons)
+  // faceoff grey (mostly for buttons)
   static const grey = 0xFF2F2F2F;
-   // faceoff white
+  // darker grey (mostly for navbars and other backgrounds)
+  static const dark_grey = 0xFF151518;
+  // faceoff white
   static const white = 0xFFFFFFFF;
+  // faceoff red
+  static const red = 0xFFCD2F2F;
 }
 
 class WebConstants {
