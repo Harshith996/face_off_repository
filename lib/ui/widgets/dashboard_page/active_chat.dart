@@ -23,10 +23,10 @@ class ActiveChat extends StatelessWidget {
       children: [
         CircularGradientBorder(
             CircleAvatar(
-              radius: 40,
+              radius: 35,
               backgroundImage: Image.asset(imgURL).image,
             ),
-            45),
+            40),
         const SizedBox(
           width: 15,
         ),
