@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import '../shared/widgets/wide_dark_background_button.dart';
 import '../shared/widgets/square_tile.dart';
 import '../shared/widgets/custom_text_field.dart';
@@ -26,20 +27,26 @@ class LoginPage extends StatelessWidget {
               const SizedBox(height: 50),
 
               // logo
-              Row(children: const [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
                 Text (
-                'Face',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 40,
+                'face',
+                style: GoogleFonts.montserrat(
+                  fontSize: 50,
+                  color: const Color(CustomColors.white),
+                  fontWeight: FontWeight.w700,
                 ),
+                
               ),
-                Text(
-                  'Off',
-                style: TextStyle(
-                  color: Color(CustomColors.green),
-                  fontSize: 40,
-                ),
+               Text(
+                  'off',
+                style: GoogleFonts.montserrat(
+                  fontSize: 50,
+                  color: const Color(CustomColors.green),
+                  fontWeight: FontWeight.w700,
+                  
+                )
                 )
               ],
               ),
@@ -128,11 +135,6 @@ class LoginPage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: const [
                   // google button
-                  SquareTile(imagePath: 'assets/images/apple.jpeg'),
-
-                  SizedBox(width: 25),
-
-                  // apple button
                   SquareTile(imagePath: 'assets/images/google.png')
                 ],
               ),
