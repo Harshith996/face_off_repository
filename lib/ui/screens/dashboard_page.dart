@@ -1,6 +1,7 @@
 import 'package:face_off/ui/shared/widgets/bottom_navbar.dart';
 import 'package:face_off/ui/shared/widgets/dangerous_binary_option_buttons.dart';
 import 'package:face_off/ui/shared/widgets/divider.dart';
+import 'package:face_off/ui/shared/widgets/new_navbar.dart';
 import 'package:face_off/ui/widgets/dashboard_page/active_chat.dart';
 import 'package:face_off/ui/widgets/dashboard_page/revealed_chat_line_item.dart';
 import 'package:face_off/utils/constants.dart';
@@ -143,6 +144,6 @@ class _DashboardPageState extends State<DashboardPage> {
             ],
           ),
         ))),
-        bottomNavigationBar: BottomNavbar());
+        bottomNavigationBar: CustomNavbar());
   }
 }
