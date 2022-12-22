@@ -1,3 +1,4 @@
+import 'package:face_off/ui/screens/chat_page.dart';
 import 'package:face_off/ui/screens/dashboard_page.dart';
 import 'package:face_off/ui/screens/enter_details_page.dart';
 import 'package:face_off/ui/screens/match_found_page.dart';
@@ -25,7 +26,10 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: const DashboardPage(),
+      home:  const ChatPage(),
+
+
+
     );
   }
 }
