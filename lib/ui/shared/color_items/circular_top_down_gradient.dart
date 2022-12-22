@@ -1,4 +1,5 @@
 // ignore_for_file: non_constant_identifier_names
+import 'package:face_off/utils/constants.dart';
 import 'package:flutter/material.dart';
 
 class CircularTopDownGradient extends StatelessWidget {
@@ -28,6 +29,10 @@ class CircularTopDownGradient extends StatelessWidget {
                     end: Alignment.bottomLeft,
                     colors: [color1, color2])),
           ),
+        ),
+        CircleAvatar(
+          radius: radius - 2,
+          backgroundColor: Colors.black,
         ),
         child
       ],

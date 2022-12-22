@@ -1,4 +1,5 @@
 import 'package:face_off/ui/screens/chat_page.dart';
+import 'package:face_off/ui/screens/dashboard_page.dart';
 import 'package:face_off/ui/screens/enter_details_page.dart';
 import 'package:face_off/ui/screens/match_found_page.dart';
 import 'package:face_off/ui/screens/meetup_decision_page.dart';
