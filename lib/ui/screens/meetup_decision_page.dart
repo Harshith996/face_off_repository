@@ -52,7 +52,7 @@ class _MeetupDecisionPageState extends State<MeetupDecisionPage> {
                 height: 30,
               ),
               const Text(
-                'Adithya Bharath',
+                'Aditya Bharath',
                 style: TextStyle(
                     fontSize: 25,
                     fontWeight: FontWeight.bold,
@@ -93,7 +93,8 @@ class _MeetupDecisionPageState extends State<MeetupDecisionPage> {
                               'be able to schedule a meeting if your chatting partner says no.',
                           style: TextStyle(
                               color: Color(CustomColors.white), fontSize: 18))
-                    ])),
+                    ]
+                    )),
               ),
               const SizedBox(
                 height: 60,

@@ -11,6 +11,10 @@ class CustomColors {
   static const grey = 0xFF2F2F2F;
    // faceoff white
   static const white = 0xFFFFFFFF;
+  // faceoff gray
+  static const gray = 0xFF2B2B2B;
+  // faceoff testing arbitrary
+  static const contrast = 0xFF2C3F50;
 }
 
 class WebConstants {

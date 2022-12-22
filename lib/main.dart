@@ -1,3 +1,4 @@
+import 'package:face_off/ui/screens/chat_page.dart';
 import 'package:face_off/ui/screens/enter_details_page.dart';
 import 'package:face_off/ui/screens/match_found_page.dart';
 import 'package:face_off/ui/screens/meetup_decision_page.dart';
@@ -24,7 +25,10 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: LoginPage(),
+      home:  const ChatPage(),
+
+
+
     );
   }
 }
