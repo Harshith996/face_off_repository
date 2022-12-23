@@ -1,5 +1,4 @@
 // ignore_for_file: non_constant_identifier_names
-import 'package:face_off/utils/constants.dart';
 import 'package:flutter/material.dart';
 
 class CircularTopDownGradient extends StatelessWidget {

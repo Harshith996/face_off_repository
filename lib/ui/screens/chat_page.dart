@@ -16,7 +16,7 @@ class ChatPage extends StatefulWidget {
 class _ChatPage extends State<ChatPage> {
   _textBox() {
     return Container(
-        padding: EdgeInsets.symmetric(horizontal: 10.0),
+        padding: const EdgeInsets.symmetric(horizontal: 10.0),
         height: 80,
         color: const Color(CustomColors.white),
         child: Row(
