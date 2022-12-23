@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "310351669320",
+    "firebase_url": "https://faceoff-a34ba-default-rtdb.firebaseio.com",
+    "project_id": "faceoff-a34ba",
+    "storage_bucket": "faceoff-a34ba.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:310351669320:android:361191ffe73b70481e107d",
+        "android_client_info": {
+          "package_name": "com.example.face_off"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "310351669320-0ip082q9npfif34bjt0iv7s606ssgh5j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBtBfefnXFkC_2HcagnRi61n5wnvzvn8rc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "310351669320-0ip082q9npfif34bjt0iv7s606ssgh5j.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "310351669320-65gv88b6kcrbkdqt4himrn7js0k00efu.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.faceOff"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

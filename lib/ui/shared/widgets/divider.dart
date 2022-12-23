@@ -1,5 +1,3 @@
-import 'package:face_off/ui/shared/color_items/square_top_down_gradient.dart';
-import 'package:face_off/ui/shared/widgets/square_tile.dart';
 import 'package:face_off/utils/constants.dart';
 import 'package:flutter/cupertino.dart';
 

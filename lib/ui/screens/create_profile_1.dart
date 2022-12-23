@@ -1,4 +1,3 @@
-
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:face_off/ui/shared/widgets/wide_dark_background_button.dart';
 import 'package:face_off/ui/shared/color_items/circular_top_down_gradient.dart';
@@ -15,6 +14,7 @@ class CreateProfile extends StatefulWidget {
 class _CreateProfileState extends State<CreateProfile> {
   int activeIndex = 0;
   CarouselController carouselController = CarouselController();
+  // ignore: non_constant_identifier_names
   final anonymous_icons = [
     'assets/images/profile_pictures/anonymous_icon_1.jpg',
     'assets/images/profile_pictures/anonymous_icon_2.jpg',
@@ -40,17 +40,15 @@ class _CreateProfileState extends State<CreateProfile> {
                   fontSize: 30,
                   fontWeight: FontWeight.bold),
             ),
-            
+
             const SizedBox(
               height: 50,
             ),
 
-            const Text(
-              'Choose an anonymous icon',
-              textAlign: TextAlign.center,
-              style: TextStyle(color: Color(CustomColors.white),
-               fontSize: 18)
-            ),
+            const Text('Choose an anonymous icon',
+                textAlign: TextAlign.center,
+                style:
+                    TextStyle(color: Color(CustomColors.white), fontSize: 18)),
 
             const SizedBox(
               height: 27,
@@ -109,7 +107,8 @@ class _CreateProfileState extends State<CreateProfile> {
               textAlign: TextAlign.center,
               text: const TextSpan(text: '', children: <TextSpan>[
                 TextSpan(
-                    text: 'Your anonymous icon is visible to everyone you text. Choose something that (kind of) shows off your personality. ',
+                    text:
+                        'Your anonymous icon is visible to everyone you text. Choose something that (kind of) shows off your personality. ',
                     style: TextStyle(
                         fontSize: 18, color: Color(CustomColors.white)))
               ]),
@@ -135,4 +134,3 @@ Widget buildImage(String imgPath, int index) {
         backgroundImage: Image.asset(imgPath).image,
       )));
 }
-

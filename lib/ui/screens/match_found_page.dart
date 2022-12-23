@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:face_off/ui/shared/widgets/circular_gradient_border.dart';
 import 'package:face_off/ui/shared/widgets/wide_dark_background_button.dart';
 import 'package:face_off/utils/constants.dart';

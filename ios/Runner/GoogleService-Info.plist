@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>310351669320-65gv88b6kcrbkdqt4himrn7js0k00efu.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.310351669320-65gv88b6kcrbkdqt4himrn7js0k00efu</string>
+	<key>API_KEY</key>
+	<string>AIzaSyB9_Fnkf15TEQ8S9YoLwncZCKE1CrSzjq0</string>
+	<key>GCM_SENDER_ID</key>
+	<string>310351669320</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.faceOff</string>
+	<key>PROJECT_ID</key>
+	<string>faceoff-a34ba</string>
+	<key>STORAGE_BUCKET</key>
+	<string>faceoff-a34ba.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:310351669320:ios:b6c3db2a14df0ebd1e107d</string>
+	<key>DATABASE_URL</key>
+	<string>https://faceoff-a34ba-default-rtdb.firebaseio.com</string>
+</dict>
+</plist>

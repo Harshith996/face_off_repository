@@ -30,30 +30,25 @@ class LoginPage extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                Text (
-                'face',
-                style: GoogleFonts.montserrat(
-                  fontSize: 50,
-                  color: const Color(CustomColors.white),
-                  fontWeight: FontWeight.w700,
-                ),
-                
+                  Text(
+                    'face',
+                    style: GoogleFonts.montserrat(
+                      fontSize: 50,
+                      color: const Color(CustomColors.white),
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                  Text('off',
+                      style: GoogleFonts.montserrat(
+                        fontSize: 50,
+                        color: const Color(CustomColors.green),
+                        fontWeight: FontWeight.w700,
+                      ))
+                ],
               ),
-               Text(
-                  'off',
-                style: GoogleFonts.montserrat(
-                  fontSize: 50,
-                  color: const Color(CustomColors.green),
-                  fontWeight: FontWeight.w700,
-                  
-                )
-                )
-              ],
-              ),
-              
 
               const SizedBox(height: 50),
-               Text(
+              Text(
                 'Welcome back to Faceoff',
                 style: TextStyle(
                   color: Colors.grey[700],
@@ -98,7 +93,7 @@ class LoginPage extends StatelessWidget {
               const SizedBox(height: 25),
 
               // sign in button
-              WideDarkBackgroundButton(displayText: 'Sign In'),
+              const WideDarkBackgroundButton(displayText: 'Sign In'),
 
               const SizedBox(height: 50),
 
