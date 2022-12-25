@@ -108,7 +108,7 @@ class SignUpPage extends StatelessWidget {
                 obscureText: false,
                 hintText: '(123) 456-7890',
               ),
-              q
+      
               const SizedBox(height: 20),
 
               Text(
