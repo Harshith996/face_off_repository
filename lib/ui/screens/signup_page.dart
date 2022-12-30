@@ -60,13 +60,12 @@ class SignUpPage extends StatelessWidget {
 
               const SizedBox(height: 20),
 
-            Text(
+              Text(
                 'First Name:',
                 style: GoogleFonts.montserrat(
-                  color: Colors.white,
-                  fontSize: 12,
-                  fontWeight: FontWeight.w600
-                ),
+                    color: Colors.white,
+                    fontSize: 12,
+                    fontWeight: FontWeight.w600),
               ),
               // username textfield
               MyTextField(
@@ -80,10 +79,9 @@ class SignUpPage extends StatelessWidget {
               Text(
                 'Last Name:',
                 style: GoogleFonts.montserrat(
-                  color: Colors.white,
-                  fontSize: 12,
-                  fontWeight: FontWeight.w600
-                ),
+                    color: Colors.white,
+                    fontSize: 12,
+                    fontWeight: FontWeight.w600),
               ),
 
               MyTextField(
@@ -97,10 +95,9 @@ class SignUpPage extends StatelessWidget {
               Text(
                 'Phone Number:',
                 style: GoogleFonts.montserrat(
-                  color: Colors.white,
-                  fontSize: 12,
-                  fontWeight: FontWeight.w600
-                ),
+                    color: Colors.white,
+                    fontSize: 12,
+                    fontWeight: FontWeight.w600),
               ),
 
               MyTextField(
@@ -108,16 +105,15 @@ class SignUpPage extends StatelessWidget {
                 obscureText: false,
                 hintText: '(123) 456-7890',
               ),
-      
+
               const SizedBox(height: 20),
 
               Text(
                 'Password:',
                 style: GoogleFonts.montserrat(
-                  color: Colors.white,
-                  fontSize: 12,
-                  fontWeight: FontWeight.w600
-                ),
+                    color: Colors.white,
+                    fontSize: 12,
+                    fontWeight: FontWeight.w600),
               ),
 
               // password textfield
@@ -127,15 +123,14 @@ class SignUpPage extends StatelessWidget {
                 obscureText: true,
               ),
 
-              const SizedBox(height: 35),
+              const SizedBox(height: 20),
 
               Text(
                 'Retype Password:',
                 style: GoogleFonts.montserrat(
-                  color: Colors.white,
-                  fontSize: 12,
-                  fontWeight: FontWeight.w600
-                ),
+                    color: Colors.white,
+                    fontSize: 12,
+                    fontWeight: FontWeight.w600),
               ),
 
               MyTextField(
@@ -143,11 +138,11 @@ class SignUpPage extends StatelessWidget {
                 hintText: '',
                 obscureText: true,
               ),
-            
-              // sign in button
-              const WideDarkBackgroundButton(displayText: 'Register'),
 
               const SizedBox(height: 20),
+
+              // sign in button
+              const WideDarkBackgroundButton(displayText: 'Register'),
 
               const SizedBox(height: 20),
             ],
