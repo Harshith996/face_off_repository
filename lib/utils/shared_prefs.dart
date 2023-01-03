@@ -19,15 +19,15 @@ class SharedPrefs {
     _sharedPrefs.setInt(Keys.key_id, value);
   }
 
-  String get email => _sharedPrefs.getString(Keys.key_email) ?? "";
-  set email(String value) {
-    _sharedPrefs.setString(Keys.key_email, value);
+  String get phone_number => _sharedPrefs.getString(Keys.key_phonenumber) ?? "";
+  set phone_number(String value) {
+    _sharedPrefs.setString(Keys.key_phonenumber, value);
   }
 
-  String get dob => _sharedPrefs.getString(Keys.key_dob) ?? "";
-  set dob(String value) {
-    _sharedPrefs.setString(Keys.key_dob, value);
-  }
+  // String get dob => _sharedPrefs.getString(Keys.key_dob) ?? "";
+  // set dob(String value) {
+  //   _sharedPrefs.setString(Keys.key_dob, value);
+  // }
 
   String get first_name => _sharedPrefs.getString(Keys.key_firstname) ?? "";
   set first_name(String value) {
@@ -39,13 +39,13 @@ class SharedPrefs {
     _sharedPrefs.setString(Keys.key_lastname, value);
   }
 
-  String get phone => _sharedPrefs.getString(Keys.key_phone) ?? "";
-  set phone(String value) {
-    _sharedPrefs.setString(Keys.key_phone, value);
-  }
-
   String get gender => _sharedPrefs.getString(Keys.key_gender) ?? "";
   set gender(String value) {
     _sharedPrefs.setString(Keys.key_gender, value);
+  }
+
+  bool get is_first_open => _sharedPrefs.getBool(Keys.key_isfirstopen) ?? true;
+  set is_first_name(bool value) {
+    _sharedPrefs.setBool(Keys.key_isfirstopen, value);
   }
 }

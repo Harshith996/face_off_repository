@@ -30,10 +30,11 @@ class WebConstants {
 
 class Keys {
   static const key_id = 'key_id';
-  static const key_email = 'key_email';
+  static const key_phonenumber = 'key_phonenumber';
   static const key_dob = 'key_dob';
   static const key_firstname = 'key_firstname';
   static const key_lastname = 'key_lastname';
   static const key_phone = 'key_phone';
   static const key_gender = 'key_gender';
+  static const key_isfirstopen = 'key_isfirstopen';
 }

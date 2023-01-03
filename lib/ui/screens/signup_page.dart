@@ -54,6 +54,55 @@ class SignUpPage extends StatelessWidget {
               const SizedBox(
                 height: 50,
               ),
+              const Text(
+                "Enter a phone number and password to create an account with faceoff",
+                textAlign: TextAlign.center,
+                style:
+                    TextStyle(color: Color(CustomColors.white), fontSize: 18),
+              ),
+              const SizedBox(
+                height: 27,
+              ),
+              Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 8, vertical: 10),
+                  child: TextFormField(
+                      keyboardType: TextInputType.phone,
+                      style: const TextStyle(color: Color(CustomColors.white)),
+                      decoration: const InputDecoration(
+                        enabledBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(
+                                width: 1, color: Color(CustomColors.white))),
+                        labelStyle: TextStyle(color: Color(CustomColors.white)),
+                        labelText: 'Phone Number',
+                      ))),
+              Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 8, vertical: 10),
+                  child: TextFormField(
+                      obscureText: true,
+                      style: const TextStyle(color: Color(CustomColors.white)),
+                      decoration: const InputDecoration(
+                        enabledBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(
+                                width: 1, color: Color(CustomColors.white))),
+                        labelStyle: TextStyle(color: Color(CustomColors.white)),
+                        labelText: 'Password',
+                      ))),
+              Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 8, vertical: 10),
+                  child: TextFormField(
+                      obscureText: true,
+                      style: const TextStyle(color: Color(CustomColors.white)),
+                      decoration: const InputDecoration(
+                        enabledBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(
+                                width: 1, color: Color(CustomColors.white))),
+                        labelStyle: TextStyle(color: Color(CustomColors.white)),
+                        labelText: 'Confirm Password',
+                      ))),
+              const Spacer(),
               WideDarkBackgroundButton(
                   displayText: "Sign Up",
                   onTap: () {
