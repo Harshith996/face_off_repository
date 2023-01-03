@@ -1,9 +1,13 @@
+// ignore_for_file: non_constant_identifier_names
+
+import 'package:face_off/ui/shared/widgets/divider.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import '../../utils/apis.dart';
 import '../shared/widgets/wide_dark_background_button.dart';
-import '../shared/widgets/square_tile.dart';
-import '../shared/widgets/custom_text_field.dart';
 import 'package:face_off/utils/constants.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 class SignUpPage extends StatelessWidget {
   SignUpPage({super.key});
@@ -24,131 +28,65 @@ class SignUpPage extends StatelessWidget {
       backgroundColor: const Color(CustomColors.background),
       body: SafeArea(
         child: Center(
+            child: Padding(
+          padding: const EdgeInsets.all(20),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              // logo
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    'face',
-                    style: GoogleFonts.montserrat(
-                      fontSize: 50,
-                      color: const Color(CustomColors.white),
-                      fontWeight: FontWeight.w700,
-                    ),
+              const Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  'Sign Up',
+                  style: TextStyle(
+                    fontSize: 30,
+                    color: Color(CustomColors.white),
+                    fontWeight: FontWeight.bold,
                   ),
-                  Text('off',
-                      style: GoogleFonts.montserrat(
-                        fontSize: 50,
-                        color: const Color(CustomColors.green),
-                        fontWeight: FontWeight.w700,
-                      ))
-                ],
-              ),
-
-              const SizedBox(height: 20),
-
-              Text(
-                'Welcome to Faceoff',
-                style: TextStyle(
-                  color: Colors.grey[600],
-                  fontSize: 16,
                 ),
               ),
-
-              const SizedBox(height: 20),
-
-              Text(
-                'First Name:',
-                style: GoogleFonts.montserrat(
-                    color: Colors.white,
-                    fontSize: 12,
-                    fontWeight: FontWeight.w600),
+              const SizedBox(
+                height: 10,
               ),
-              // username textfield
-              MyTextField(
-                controller: fnameController,
-                hintText: 'John',
-                obscureText: false,
+              const Align(
+                alignment: Alignment.centerLeft,
+                child: LineDivider(length: 70),
               ),
-
-              const SizedBox(height: 20),
-
-              Text(
-                'Last Name:',
-                style: GoogleFonts.montserrat(
-                    color: Colors.white,
-                    fontSize: 12,
-                    fontWeight: FontWeight.w600),
+              const SizedBox(
+                height: 50,
               ),
-
-              MyTextField(
-                controller: lnameController,
-                hintText: 'Doe',
-                obscureText: false,
-              ),
-
-              const SizedBox(height: 20),
-
-              Text(
-                'Phone Number:',
-                style: GoogleFonts.montserrat(
-                    color: Colors.white,
-                    fontSize: 12,
-                    fontWeight: FontWeight.w600),
-              ),
-
-              MyTextField(
-                controller: pControl,
-                obscureText: false,
-                hintText: '(123) 456-7890',
-              ),
-
-              const SizedBox(height: 20),
-
-              Text(
-                'Password:',
-                style: GoogleFonts.montserrat(
-                    color: Colors.white,
-                    fontSize: 12,
-                    fontWeight: FontWeight.w600),
-              ),
-
-              // password textfield
-              MyTextField(
-                controller: passwordController,
-                hintText: '',
-                obscureText: true,
-              ),
-
-              const SizedBox(height: 20),
-
-              Text(
-                'Retype Password:',
-                style: GoogleFonts.montserrat(
-                    color: Colors.white,
-                    fontSize: 12,
-                    fontWeight: FontWeight.w600),
-              ),
-
-              MyTextField(
-                controller: rpasswordController,
-                hintText: '',
-                obscureText: true,
-              ),
-
-              const SizedBox(height: 20),
-
-              // sign in button
-              const WideDarkBackgroundButton(displayText: 'Register'),
-
-              const SizedBox(height: 20),
+              WideDarkBackgroundButton(
+                  displayText: "Sign Up",
+                  onTap: () {
+                    signupUser(
+                        "6509605994", "H", "S", "Imagine@dragons1", context);
+                  })
             ],
           ),
-        ),
+        )),
       ),
     );
+  }
+
+  Future signupUser(String phone_number, String first_name, String last_name,
+      String password, BuildContext context) async {
+    final headers = {
+      "Accept": "application/json",
+      "Content-Type": "application/x-www-form-urlencoded"
+    };
+    final form = [];
+    form.add("phone_number=$phone_number");
+    form.add("first_name=$first_name");
+    form.add("last_name=$last_name");
+    form.add("password=$password");
+    final body = form.join('&');
+
+    final response = await http.post(Uri.parse(ApiUrls.url_signup),
+        headers: headers, body: body);
+    final responseJSON = json.decode(response.body);
+    if (responseJSON['error'] == false) {
+      print("Sweet");
+    } else {
+      print(responseJSON['message']);
+    }
   }
 }
