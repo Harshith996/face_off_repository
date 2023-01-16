@@ -1,17 +1,31 @@
 // ignore_for_file: non_constant_identifier_names
 
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:face_off/ui/shared/widgets/divider.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import '../../utils/apis.dart';
+import '../shared/color_items/square_top_down_gradient.dart';
 import '../shared/widgets/wide_dark_background_button.dart';
 import 'package:face_off/utils/constants.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
-class SignUpPage extends StatelessWidget {
-  SignUpPage({super.key});
+const List<String> genders = <String>['Male', 'Female', 'Other'];
+const imgPaths = [
+  'assets/images/relationship_type/friends.png',
+  'assets/images/relationship_type/dating.png'
+];
 
+class SignUpPage extends StatefulWidget {
+  const SignUpPage({Key? key}) : super(key: key);
+
+  @override
+  State<SignUpPage> createState() => _SignUpPageState();
+}
+
+class _SignUpPageState extends State<SignUpPage> {
   // text editing controllers
   final fnameController = TextEditingController();
   final lnameController = TextEditingController();
@@ -21,10 +35,15 @@ class SignUpPage extends StatelessWidget {
 
   // sign user in method
   void signUserIn() {}
+  int activeIndex = 0;
+  String? gender = null;
+  String? type = null;
+  PageController controller = PageController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: const Color(CustomColors.background),
       body: SafeArea(
         child: Center(
@@ -54,61 +73,185 @@ class SignUpPage extends StatelessWidget {
               const SizedBox(
                 height: 50,
               ),
-              const Text(
-                "Enter a phone number and password to create an account with faceoff",
-                textAlign: TextAlign.center,
-                style:
-                    TextStyle(color: Color(CustomColors.white), fontSize: 18),
+              Expanded(
+                child: PageView(
+                  controller: controller,
+                  onPageChanged: (index) => setState(() => activeIndex = index),
+                  children: [
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        const Text(
+                          "Enter a phone number and password to create an account with faceoff",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                              color: Color(CustomColors.white), fontSize: 18),
+                        ),
+                        const SizedBox(
+                          height: 27,
+                        ),
+                        Padding(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 8, vertical: 10),
+                            child: TextFormField(
+                                keyboardType: TextInputType.phone,
+                                style: const TextStyle(
+                                    color: Color(CustomColors.white)),
+                                decoration: const InputDecoration(
+                                  enabledBorder: UnderlineInputBorder(
+                                      borderSide: BorderSide(
+                                          width: 1,
+                                          color: Color(CustomColors.white))),
+                                  labelStyle: TextStyle(
+                                      color: Color(CustomColors.white)),
+                                  labelText: 'Phone Number',
+                                ))),
+                        Padding(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 8, vertical: 10),
+                            child: TextFormField(
+                                obscureText: true,
+                                style: const TextStyle(
+                                    color: Color(CustomColors.white)),
+                                decoration: const InputDecoration(
+                                  enabledBorder: UnderlineInputBorder(
+                                      borderSide: BorderSide(
+                                          width: 1,
+                                          color: Color(CustomColors.white))),
+                                  labelStyle: TextStyle(
+                                      color: Color(CustomColors.white)),
+                                  labelText: 'Password',
+                                ))),
+                        Padding(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 8, vertical: 10),
+                            child: TextFormField(
+                                obscureText: true,
+                                style: const TextStyle(
+                                    color: Color(CustomColors.white)),
+                                decoration: const InputDecoration(
+                                  enabledBorder: UnderlineInputBorder(
+                                      borderSide: BorderSide(
+                                          width: 1,
+                                          color: Color(CustomColors.white))),
+                                  labelStyle: TextStyle(
+                                      color: Color(CustomColors.white)),
+                                  labelText: 'Confirm Password',
+                                ))),
+                        const Spacer(),
+                        WideDarkBackgroundButton(
+                            displayText: "Continue",
+                            onTap: () {
+                              setState(() => activeIndex = 1);
+                              controller.nextPage(
+                                  duration: const Duration(milliseconds: 200),
+                                  curve: Curves.easeIn);
+                            }),
+                      ],
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        const Text(
+                          "Enter your personal details and preferences before we can continue setting up your account",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                              color: Color(CustomColors.white), fontSize: 18),
+                        ),
+                        const SizedBox(
+                          height: 27,
+                        ),
+                        Padding(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 8, vertical: 10),
+                            child: TextFormField(
+                                keyboardType: TextInputType.name,
+                                style: const TextStyle(
+                                    color: Color(CustomColors.white)),
+                                decoration: const InputDecoration(
+                                  enabledBorder: UnderlineInputBorder(
+                                      borderSide: BorderSide(
+                                          width: 1,
+                                          color: Color(CustomColors.white))),
+                                  labelStyle: TextStyle(
+                                      color: Color(CustomColors.white)),
+                                  labelText: 'First Name',
+                                ))),
+                        Padding(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 8, vertical: 10),
+                            child: TextFormField(
+                                keyboardType: TextInputType.name,
+                                style: const TextStyle(
+                                    color: Color(CustomColors.white)),
+                                decoration: const InputDecoration(
+                                  enabledBorder: UnderlineInputBorder(
+                                      borderSide: BorderSide(
+                                          width: 1,
+                                          color: Color(CustomColors.white))),
+                                  labelStyle: TextStyle(
+                                      color: Color(CustomColors.white)),
+                                  labelText: 'Last Name',
+                                ))),
+                        Padding(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 8, vertical: 10),
+                            child: DropdownButton<String>(
+                              isExpanded: true,
+                              value: gender,
+                              elevation: 16,
+                              dropdownColor:
+                                  const Color(CustomColors.dark_grey),
+                              style: const TextStyle(
+                                  color: Color(CustomColors.white),
+                                  fontSize: 18),
+                              underline: Container(
+                                height: 1,
+                                color: const Color(CustomColors.white),
+                              ),
+                              hint: const Text('Gender',
+                                  style: TextStyle(
+                                      color: Color(CustomColors.white))),
+                              onChanged: (String? value) {
+                                setState(() {
+                                  gender = value!;
+                                });
+                              },
+                              items: genders.map<DropdownMenuItem<String>>(
+                                  (String value) {
+                                return DropdownMenuItem<String>(
+                                  value: value,
+                                  child: Text(
+                                    value,
+                                  ),
+                                );
+                              }).toList(),
+                            )),
+                        const Spacer(),
+                        WideDarkBackgroundButton(
+                            displayText: "Sign Up",
+                            onTap: () {
+                              setState(() => activeIndex = 1);
+                              controller.nextPage(
+                                  duration: const Duration(milliseconds: 200),
+                                  curve: Curves.easeIn);
+                            }),
+                      ],
+                    ),
+                  ],
+                ),
               ),
               const SizedBox(
-                height: 27,
+                height: 20,
               ),
-              Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 8, vertical: 10),
-                  child: TextFormField(
-                      keyboardType: TextInputType.phone,
-                      style: const TextStyle(color: Color(CustomColors.white)),
-                      decoration: const InputDecoration(
-                        enabledBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(
-                                width: 1, color: Color(CustomColors.white))),
-                        labelStyle: TextStyle(color: Color(CustomColors.white)),
-                        labelText: 'Phone Number',
-                      ))),
-              Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 8, vertical: 10),
-                  child: TextFormField(
-                      obscureText: true,
-                      style: const TextStyle(color: Color(CustomColors.white)),
-                      decoration: const InputDecoration(
-                        enabledBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(
-                                width: 1, color: Color(CustomColors.white))),
-                        labelStyle: TextStyle(color: Color(CustomColors.white)),
-                        labelText: 'Password',
-                      ))),
-              Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 8, vertical: 10),
-                  child: TextFormField(
-                      obscureText: true,
-                      style: const TextStyle(color: Color(CustomColors.white)),
-                      decoration: const InputDecoration(
-                        enabledBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(
-                                width: 1, color: Color(CustomColors.white))),
-                        labelStyle: TextStyle(color: Color(CustomColors.white)),
-                        labelText: 'Confirm Password',
-                      ))),
-              const Spacer(),
-              WideDarkBackgroundButton(
-                  displayText: "Sign Up",
-                  onTap: () {
-                    signupUser(
-                        "6509605994", "H", "S", "Imagine@dragons1", context);
-                  })
+              AnimatedSmoothIndicator(
+                activeIndex: activeIndex,
+                count: 2,
+                effect: const ScrollingDotsEffect(
+                    spacing: 10.0,
+                    activeDotColor: Color(CustomColors.gray),
+                    dotColor: Color(CustomColors.dark_grey)),
+              ),
             ],
           ),
         )),
