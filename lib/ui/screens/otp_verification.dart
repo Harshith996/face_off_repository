@@ -1,4 +1,5 @@
 import 'package:face_off/ui/shared/widgets/divider.dart';
+import 'package:face_off/utils/shared_prefs.dart';
 import 'package:flutter/material.dart';
 import 'package:otp_text_field/style.dart';
 import '../../utils/apis.dart';
@@ -12,7 +13,7 @@ import 'package:otp_text_field/otp_text_field.dart';
 import 'package:otp_text_field/style.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 
-
+import 'dashboard_page.dart';
 
 class OtpVerification extends StatelessWidget {
   OtpVerification({super.key});
@@ -29,11 +30,12 @@ class OtpVerification extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    requestOTP(SharedPrefs().phone_number, context);
     return Scaffold(
       backgroundColor: const Color(CustomColors.background),
       body: SafeArea(
         child: Center(
-          child: Padding(
+            child: Padding(
           padding: const EdgeInsets.all(20),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -68,60 +70,81 @@ class OtpVerification extends StatelessWidget {
               const SizedBox(
                 height: 150,
               ),
-              
-            
-      Center(
-        child: OtpTextField(
-        numberOfFields: 4,
-        borderColor: const Color(CustomColors.white),
-        focusedBorderColor: const Color(CustomColors.blue),
-        textStyle: const TextStyle(fontSize: 30, color: Color(CustomColors.white)),
-        keyboardType: TextInputType.number,
-        //set to true to show as box or false to show as dash
-        showFieldAsBox: false,
-      )),
+              Center(
+                  child: OtpTextField(
+                numberOfFields: 4,
+                borderColor: const Color(CustomColors.white),
+                focusedBorderColor: const Color(CustomColors.blue),
+                textStyle: const TextStyle(
+                    fontSize: 30, color: Color(CustomColors.white)),
+                keyboardType: TextInputType.number,
+                //set to true to show as box or false to show as dash
+                showFieldAsBox: false,
+                onSubmit: (String otp) {
+                  verifyOTP(SharedPrefs().id.toString(), otp, context);
+                },
+              )),
               const Spacer(),
               ElevatedButton(
-                style: ElevatedButton.styleFrom(backgroundColor: const Color(CustomColors.background),  side: const BorderSide(color: Color(CustomColors.background))),
-                onPressed: () {}, 
-                child: const Text("Re-enter phone number", style:TextStyle(fontWeight: FontWeight.bold, color: Color(CustomColors.white)),
-
-                  )
-                ),
-                const SizedBox(
-                height: 170,
-              ),
-              WideDarkBackgroundButton(
-                  displayText: "Sign Up",
-                  onTap: () {
-                    signupUser(
-                        "6509605994", "H", "S", "Imagine@dragons1", context);
-                  })
-          ],
+                  style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color(CustomColors.background),
+                      side: const BorderSide(
+                          color: Color(CustomColors.background))),
+                  onPressed: () {},
+                  child: const Text(
+                    "Re-enter phone number",
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Color(CustomColors.white)),
+                  )),
+              const Spacer(),
+              WideDarkBackgroundButton(displayText: "Sign Up", onTap: () {})
+            ],
           ),
         )),
       ),
     );
   }
 
-  Future signupUser(String phone_number, String first_name, String last_name,
-      String password, BuildContext context) async {
+  Future requestOTP(String phone_number, BuildContext context) async {
     final headers = {
       "Accept": "application/json",
       "Content-Type": "application/x-www-form-urlencoded"
     };
     final form = [];
     form.add("phone_number=$phone_number");
-    form.add("first_name=$first_name");
-    form.add("last_name=$last_name");
-    form.add("password=$password");
     final body = form.join('&');
 
-    final response = await http.post(Uri.parse(ApiUrls.url_signup),
+    final response = await http.post(Uri.parse(ApiUrls.url_request_otp),
+        headers: headers, body: body);
+    final responseJSON = json.decode(response.body);
+  }
+
+  Future verifyOTP(String user_id, String otp, BuildContext context) async {
+    final headers = {
+      "Accept": "application/json",
+      "Content-Type": "application/x-www-form-urlencoded"
+    };
+    final form = [];
+    form.add("user_id=$user_id");
+    form.add("otp=$otp");
+    final body = form.join('&');
+
+    final response = await http.post(Uri.parse(ApiUrls.url_verify_otp),
         headers: headers, body: body);
     final responseJSON = json.decode(response.body);
     if (responseJSON['error'] == false) {
       print("Sweet");
+      // ignore: use_build_context_synchronously
+      Navigator.pushReplacement(
+        context,
+        PageRouteBuilder(
+          pageBuilder: (c, a1, a2) => const DashboardPage(),
+          transitionsBuilder: (c, anim, a2, child) =>
+              FadeTransition(opacity: anim, child: child),
+          transitionDuration: const Duration(milliseconds: 1000),
+        ),
+      );
     } else {
       print(responseJSON['message']);
     }

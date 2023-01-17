@@ -1,7 +1,9 @@
 // ignore_for_file: non_constant_identifier_names
 
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:face_off/ui/screens/otp_verification.dart';
 import 'package:face_off/ui/shared/widgets/divider.dart';
+import 'package:face_off/utils/shared_prefs.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
@@ -26,6 +28,14 @@ class SignUpPage extends StatefulWidget {
 }
 
 class _SignUpPageState extends State<SignUpPage> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    if (SharedPrefs().is_first_open == true) {
+      SharedPrefs().is_first_open = false;
+    }
+  }
+
   // text editing controllers
   final fnameController = TextEditingController();
   final lnameController = TextEditingController();
@@ -75,6 +85,7 @@ class _SignUpPageState extends State<SignUpPage> {
               ),
               Expanded(
                 child: PageView(
+                  physics: const NeverScrollableScrollPhysics(),
                   controller: controller,
                   onPageChanged: (index) => setState(() => activeIndex = index),
                   children: [
@@ -94,6 +105,7 @@ class _SignUpPageState extends State<SignUpPage> {
                             padding: const EdgeInsets.symmetric(
                                 horizontal: 8, vertical: 10),
                             child: TextFormField(
+                                controller: pControl,
                                 keyboardType: TextInputType.phone,
                                 style: const TextStyle(
                                     color: Color(CustomColors.white)),
@@ -110,6 +122,7 @@ class _SignUpPageState extends State<SignUpPage> {
                             padding: const EdgeInsets.symmetric(
                                 horizontal: 8, vertical: 10),
                             child: TextFormField(
+                                controller: passwordController,
                                 obscureText: true,
                                 style: const TextStyle(
                                     color: Color(CustomColors.white)),
@@ -126,6 +139,7 @@ class _SignUpPageState extends State<SignUpPage> {
                             padding: const EdgeInsets.symmetric(
                                 horizontal: 8, vertical: 10),
                             child: TextFormField(
+                                controller: rpasswordController,
                                 obscureText: true,
                                 style: const TextStyle(
                                     color: Color(CustomColors.white)),
@@ -165,6 +179,7 @@ class _SignUpPageState extends State<SignUpPage> {
                             padding: const EdgeInsets.symmetric(
                                 horizontal: 8, vertical: 10),
                             child: TextFormField(
+                                controller: fnameController,
                                 keyboardType: TextInputType.name,
                                 style: const TextStyle(
                                     color: Color(CustomColors.white)),
@@ -181,6 +196,7 @@ class _SignUpPageState extends State<SignUpPage> {
                             padding: const EdgeInsets.symmetric(
                                 horizontal: 8, vertical: 10),
                             child: TextFormField(
+                                controller: lnameController,
                                 keyboardType: TextInputType.name,
                                 style: const TextStyle(
                                     color: Color(CustomColors.white)),
@@ -232,9 +248,13 @@ class _SignUpPageState extends State<SignUpPage> {
                             displayText: "Sign Up",
                             onTap: () {
                               setState(() => activeIndex = 1);
-                              controller.nextPage(
-                                  duration: const Duration(milliseconds: 200),
-                                  curve: Curves.easeIn);
+                              signupUser(
+                                  pControl.value.text,
+                                  fnameController.text,
+                                  lnameController.text,
+                                  genders.indexOf(gender!),
+                                  passwordController.text,
+                                  context);
                             }),
                       ],
                     ),
@@ -260,7 +280,7 @@ class _SignUpPageState extends State<SignUpPage> {
   }
 
   Future signupUser(String phone_number, String first_name, String last_name,
-      String password, BuildContext context) async {
+      int gender, String password, BuildContext context) async {
     final headers = {
       "Accept": "application/json",
       "Content-Type": "application/x-www-form-urlencoded"
@@ -269,6 +289,7 @@ class _SignUpPageState extends State<SignUpPage> {
     form.add("phone_number=$phone_number");
     form.add("first_name=$first_name");
     form.add("last_name=$last_name");
+    form.add("gender=$gender");
     form.add("password=$password");
     final body = form.join('&');
 
@@ -276,6 +297,21 @@ class _SignUpPageState extends State<SignUpPage> {
         headers: headers, body: body);
     final responseJSON = json.decode(response.body);
     if (responseJSON['error'] == false) {
+      SharedPrefs().id = responseJSON['user_id'];
+      SharedPrefs().phone_number = responseJSON['phone_number'];
+      SharedPrefs().first_name = responseJSON['first_name'];
+      SharedPrefs().last_name = responseJSON['last_name'];
+      SharedPrefs().gender = responseJSON['gender'];
+      // ignore: use_build_context_synchronously
+      Navigator.pushReplacement(
+        context,
+        PageRouteBuilder(
+          pageBuilder: (c, a1, a2) => OtpVerification(),
+          transitionsBuilder: (c, anim, a2, child) =>
+              FadeTransition(opacity: anim, child: child),
+          transitionDuration: const Duration(milliseconds: 1000),
+        ),
+      );
       print("Sweet");
     } else {
       print(responseJSON['message']);

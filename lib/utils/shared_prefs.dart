@@ -45,7 +45,13 @@ class SharedPrefs {
   }
 
   bool get is_first_open => _sharedPrefs.getBool(Keys.key_isfirstopen) ?? true;
-  set is_first_name(bool value) {
+  set is_first_open(bool value) {
     _sharedPrefs.setBool(Keys.key_isfirstopen, value);
+  }
+
+  bool get is_currently_matched =>
+      _sharedPrefs.getBool(Keys.key_iscurrentlymatched) ?? false;
+  set is_currently_matched(bool value) {
+    _sharedPrefs.setBool(Keys.key_iscurrentlymatched, value);
   }
 }

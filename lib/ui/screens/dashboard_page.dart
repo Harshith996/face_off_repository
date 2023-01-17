@@ -2,10 +2,15 @@ import 'package:face_off/ui/shared/widgets/bottom_navbar.dart';
 import 'package:face_off/ui/shared/widgets/dangerous_binary_option_buttons.dart';
 import 'package:face_off/ui/shared/widgets/divider.dart';
 import 'package:face_off/ui/shared/widgets/new_navbar.dart';
+import 'package:face_off/ui/shared/widgets/wide_dark_background_button.dart';
 import 'package:face_off/ui/widgets/dashboard_page/active_chat.dart';
 import 'package:face_off/ui/widgets/dashboard_page/revealed_chat_line_item.dart';
 import 'package:face_off/utils/constants.dart';
+import 'package:face_off/utils/shared_prefs.dart';
 import 'package:flutter/material.dart';
+import 'package:xmpp_stone/xmpp_stone.dart' as xmpp;
+
+import '../shared/widgets/wide_red_background_button.dart';
 
 class DashboardPage extends StatefulWidget {
   const DashboardPage({Key? key}) : super(key: key);
@@ -15,6 +20,19 @@ class DashboardPage extends StatefulWidget {
 }
 
 class _DashboardPageState extends State<DashboardPage> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    var userAtDomain = 'test@172.20.10.3';
+    var password = 'qwerty';
+    var jid = xmpp.Jid.fromFullJid(userAtDomain);
+    var account = xmpp.XmppAccountSettings(
+        userAtDomain, jid.local, jid.domain, password, 5222,
+        resource: 'xmppstone');
+    var connection = xmpp.Connection(account);
+    connection.connect();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -51,34 +69,45 @@ class _DashboardPageState extends State<DashboardPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              const Align(
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  'Anonymous Chats',
-                  style: TextStyle(
-                    fontSize: 30,
-                    color: Color(CustomColors.white),
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
-              const SizedBox(
-                height: 30,
-              ),
-              const ActiveChat(
-                  name: "Anonymous 1",
-                  description: "typing...",
-                  timeLeft: '24h Left',
-                  active: true,
-                  imgURL:
-                      'assets/images/profile_pictures/anonymous_icon_1.jpg'),
-              const SizedBox(
-                height: 20,
-              ),
-              const Align(
-                  alignment: Alignment.centerLeft,
-                  child: DangerousBinaryOptionButtons(
-                      text1: "Request a Faceoff", text2: "Abandon Chat")),
+              SharedPrefs().is_currently_matched
+                  ? Container(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: const [
+                          Align(
+                            alignment: Alignment.centerLeft,
+                            child: Text(
+                              'Anonymous Chats',
+                              style: TextStyle(
+                                fontSize: 30,
+                                color: Color(CustomColors.white),
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            height: 30,
+                          ),
+                          ActiveChat(
+                              name: "Anonymous 1",
+                              description: "typing...",
+                              timeLeft: '24h Left',
+                              active: true,
+                              imgURL:
+                                  'assets/images/profile_pictures/anonymous_icon_1.jpg'),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          Align(
+                              alignment: Alignment.centerLeft,
+                              child: DangerousBinaryOptionButtons(
+                                  text1: "Request a Faceoff",
+                                  text2: "Abandon Chat")),
+                        ],
+                      ),
+                    )
+                  : WideDarkBackgroundButton(
+                      displayText: "Match me", onTap: () {}),
               const SizedBox(
                 height: 30,
               ),
@@ -145,5 +174,10 @@ class _DashboardPageState extends State<DashboardPage> {
           ),
         ))),
         bottomNavigationBar: const CustomNavbar());
+  }
+
+  void _onError(Object error) {
+    // TODO : Handle the Error event
+    print(error.toString());
   }
 }
