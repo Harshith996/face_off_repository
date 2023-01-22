@@ -6,4 +6,5 @@ class ApiUrls {
   static const url_signup = "${root_url}user_operations/userSignup.php";
   static const url_request_otp = "${root_url}user_operations/requestOTP.php";
   static const url_verify_otp = "${root_url}user_operations/verifyOTP.php";
+  static const url_answer_question = "${root_url}questions/recordAnswer.php";
 }

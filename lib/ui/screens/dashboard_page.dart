@@ -1,3 +1,4 @@
+import 'package:face_off/ui/screens/loading_page.dart';
 import 'package:face_off/ui/shared/widgets/bottom_navbar.dart';
 import 'package:face_off/ui/shared/widgets/dangerous_binary_option_buttons.dart';
 import 'package:face_off/ui/shared/widgets/divider.dart';
@@ -8,7 +9,6 @@ import 'package:face_off/ui/widgets/dashboard_page/revealed_chat_line_item.dart'
 import 'package:face_off/utils/constants.dart';
 import 'package:face_off/utils/shared_prefs.dart';
 import 'package:flutter/material.dart';
-import 'package:xmpp_stone/xmpp_stone.dart' as xmpp;
 
 import '../shared/widgets/wide_red_background_button.dart';
 
@@ -21,17 +21,7 @@ class DashboardPage extends StatefulWidget {
 
 class _DashboardPageState extends State<DashboardPage> {
   @override
-  void initState() {
-    // TODO: implement initState
-    var userAtDomain = 'test@172.20.10.3';
-    var password = 'qwerty';
-    var jid = xmpp.Jid.fromFullJid(userAtDomain);
-    var account = xmpp.XmppAccountSettings(
-        userAtDomain, jid.local, jid.domain, password, 5222,
-        resource: 'xmppstone');
-    var connection = xmpp.Connection(account);
-    connection.connect();
-  }
+  void initState() {}
 
   @override
   Widget build(BuildContext context) {
@@ -69,7 +59,8 @@ class _DashboardPageState extends State<DashboardPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              SharedPrefs().is_currently_matched
+              // SharedPrefs().is_currently_matched
+              true
                   ? Container(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
@@ -107,7 +98,19 @@ class _DashboardPageState extends State<DashboardPage> {
                       ),
                     )
                   : WideDarkBackgroundButton(
-                      displayText: "Match me", onTap: () {}),
+                      displayText: "Match me",
+                      onTap: () {
+                        Navigator.pushReplacement(
+                          context,
+                          PageRouteBuilder(
+                            pageBuilder: (c, a1, a2) => const LoadingPage(),
+                            transitionsBuilder: (c, anim, a2, child) =>
+                                FadeTransition(opacity: anim, child: child),
+                            transitionDuration:
+                                const Duration(milliseconds: 1000),
+                          ),
+                        );
+                      }),
               const SizedBox(
                 height: 30,
               ),

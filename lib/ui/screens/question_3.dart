@@ -1,27 +1,31 @@
 // ignore_for_file: non_constant_identifier_names
 
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:face_off/ui/screens/question_1.dart';
+import 'package:face_off/ui/screens/question_4.dart';
 import 'package:face_off/ui/shared/color_items/square_top_down_gradient.dart';
 import 'package:face_off/ui/shared/widgets/wide_dark_background_button.dart';
 import 'package:face_off/utils/constants.dart';
 import 'package:flutter/material.dart';
 
-class QuestionPage extends StatefulWidget {
-  const QuestionPage({Key? key}) : super(key: key);
+import '../../utils/shared_prefs.dart';
+
+class QuestionThreePage extends StatefulWidget {
+  const QuestionThreePage({Key? key}) : super(key: key);
 
   @override
-  State<QuestionPage> createState() => _QuestionPageState();
+  State<QuestionThreePage> createState() => _QuestionThreePageState();
 }
 
-class _QuestionPageState extends State<QuestionPage> {
+class _QuestionThreePageState extends State<QuestionThreePage> {
   int activeIndex = 0;
   CarouselController carouselController = CarouselController();
-  final animal_imgs = [
-    'assets/images/spirit_animal/animal_1.jpg',
-    'assets/images/spirit_animal/animal_2.jpg',
-    'assets/images/spirit_animal/animal_3.jpg',
-    'assets/images/spirit_animal/animal_4.jpg',
-    'assets/images/spirit_animal/animal_5.jpg',
+  final hangout_spot_imgs = [
+    'assets/images/hobbies/hobby_1.jpg',
+    'assets/images/hobbies/hobby_2.jpg',
+    'assets/images/hobbies/hobby_3.jpg',
+    'assets/images/hobbies/hobby_4.jpg',
+    'assets/images/hobbies/hobby_5.jpg',
   ];
   @override
   Widget build(BuildContext context) {
@@ -34,7 +38,7 @@ class _QuestionPageState extends State<QuestionPage> {
           children: [
             // Heading
             const Text(
-              'Animal',
+              'Hanging Out',
               style: TextStyle(
                   color: Color(CustomColors.white),
                   fontSize: 40,
@@ -49,9 +53,9 @@ class _QuestionPageState extends State<QuestionPage> {
               children: [
                 CarouselSlider.builder(
                   carouselController: carouselController,
-                  itemCount: animal_imgs.length,
+                  itemCount: hangout_spot_imgs.length,
                   itemBuilder: (context, index, realIndex) {
-                    final imgPath = animal_imgs[index];
+                    final imgPath = hangout_spot_imgs[index];
                     return buildImage(imgPath, index);
                   },
                   options: CarouselOptions(
@@ -92,19 +96,28 @@ class _QuestionPageState extends State<QuestionPage> {
             ),
 
             // Follow up Text
-            RichText(
-              text: const TextSpan(text: '', children: <TextSpan>[
-                TextSpan(
-                    text: 'Select your ',
-                    style: TextStyle(
-                        fontSize: 18, color: Color(CustomColors.white))),
-                TextSpan(
-                    text: 'spirit animal.',
-                    style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                        color: Color(CustomColors.white))),
-              ]),
+            Padding(
+              padding: const EdgeInsets.all(20),
+              child: RichText(
+                textAlign: TextAlign.center,
+                text: const TextSpan(text: '', children: <TextSpan>[
+                  TextSpan(
+                      text: 'Select the ',
+                      style: TextStyle(
+                          fontSize: 20, color: Color(CustomColors.white))),
+                  TextSpan(
+                      text: 'kind of setting ',
+                      style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          color: Color(CustomColors.white))),
+                  TextSpan(
+                      text:
+                          'you would feel most comfortable spending your free time',
+                      style: TextStyle(
+                          fontSize: 20, color: Color(CustomColors.white))),
+                ]),
+              ),
             ),
             const SizedBox(
               height: 40,
@@ -112,8 +125,19 @@ class _QuestionPageState extends State<QuestionPage> {
 
             // Button to Choose
             WideDarkBackgroundButton(
-              displayText: "Continue",
-              onTap: () {},
+              displayText: "Select and Continue",
+              onTap: () {
+                recordAnswer(3, SharedPrefs().id, activeIndex);
+                Navigator.pushReplacement(
+                  context,
+                  PageRouteBuilder(
+                    pageBuilder: (c, a1, a2) => const QuestionFourPage(),
+                    transitionsBuilder: (c, anim, a2, child) =>
+                        FadeTransition(opacity: anim, child: child),
+                    transitionDuration: const Duration(milliseconds: 1000),
+                  ),
+                );
+              },
             )
           ],
         )))));

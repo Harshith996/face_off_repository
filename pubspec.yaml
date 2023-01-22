@@ -20,7 +20,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
 environment:
-  sdk: '>=2.18.2 <3.0.0'
+  sdk: '>=2.18.4 <3.0.0'
 
 # Dependencies specify other packages that your package needs in order to work.
 # To automatically upgrade your package dependencies to the latest versions
@@ -44,7 +44,9 @@ dependencies:
   otp_text_field: ^1.1.3
   smooth_page_indicator: ^1.0.0+2
   flutter_otp_text_field: ^1.1.1
-  xmpp_stone: ^0.4.4-dev.2
+  socket_io_client: ^2.0.1
+  xmpp_plugin: ^2.2.6
+  
 
 dev_dependencies:
   flutter_test:
@@ -72,6 +74,11 @@ flutter:
    - assets/images/
    - assets/images/profile_pictures/
    - assets/images/relationship_type/
+   - assets/images/hobbies/
+   - assets/images/hangout_spots/
+   - assets/images/interests/
+   - assets/images/places/
+   - assets/images/artists/
 
   # To add assets to your application, add an assets section, like this:
   # assets:

@@ -1,8 +1,9 @@
+import 'package:face_off/utils/shared_prefs.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:face_off/utils/constants.dart';
-
-import '../models/message_model.dart';
+import '../models/message_model.dart' as msg;
+import 'package:xmpp_plugin/xmpp_plugin.dart';
 
 // ignore: must_be_immutable
 class ChatPage extends StatefulWidget {
@@ -14,6 +15,10 @@ class ChatPage extends StatefulWidget {
 }
 
 class _ChatPage extends State<ChatPage> {
+  void _onError(Object error) {
+    print(error.toString());
+  }
+
   _textBox() {
     return Container(
         padding: const EdgeInsets.symmetric(horizontal: 10.0),
@@ -29,7 +34,7 @@ class _ChatPage extends State<ChatPage> {
         ));
   }
 
-  _buildMessage(Message message, bool isMe) {
+  _buildMessage(msg.Message message, bool isMe) {
     return Container(
         margin: isMe
             ? const EdgeInsets.only(
@@ -67,6 +72,12 @@ class _ChatPage extends State<ChatPage> {
                     fontWeight: FontWeight.w600,
                   )),
             ]));
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    connect().whenComplete(() => null);
   }
 
   @override
@@ -122,15 +133,37 @@ class _ChatPage extends State<ChatPage> {
                   child: ListView.builder(
                       reverse: true,
                       padding: const EdgeInsets.only(top: 30),
-                      itemCount: messages.length,
+                      itemCount: msg.messages.length,
                       itemBuilder: (BuildContext context, int index) {
-                        final Message message = messages[index];
-                        final bool isMe = message.sender.id == currentUser.id;
+                        final msg.Message message = msg.messages[index];
+                        final bool isMe =
+                            message.sender.id == msg.currentUser.id;
                         return _buildMessage(message, isMe);
                       }))),
         ),
         _textBox(),
       ]),
     );
+  }
+
+  Future<void> connect() async {
+    final auth = {
+      "user_jid": "test@desktop-gam0g7e/faceoff",
+      "password": "qwerty",
+      "host": "192.168.86.25",
+      "port": '5222',
+      "requireSSLConnection": true,
+      "autoDeliveryReceipt": true,
+      "useStreamManagement": false,
+      "automaticReconnection": true,
+    };
+
+    XmppConnection connection = XmppConnection(auth);
+    await connection.start(_onError);
+    await connection.login();
+    var id = SharedPrefs().id.toString() +
+        DateTime.now().millisecondsSinceEpoch.toString();
+    await connection.sendMessageWithType("test2@desktop-gam0g7e",
+        "This is a test message", id, DateTime.now().millisecondsSinceEpoch);
   }
 }
