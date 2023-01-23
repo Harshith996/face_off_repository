@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:face_off/utils/constants.dart';
 import '../models/message_model.dart' as msg;
 import 'package:xmpp_plugin/xmpp_plugin.dart';
+import 'package:face_off/ui/widgets/chat_page/intervention_bubble.dart';
 
 // ignore: must_be_immutable
 class ChatPage extends StatefulWidget {
@@ -118,6 +119,7 @@ class _ChatPage extends State<ChatPage> {
             ],
           )),
       body: Column(children: <Widget>[
+        const InterventionBubble(),
         Expanded(
           child: Container(
               decoration: const BoxDecoration(
