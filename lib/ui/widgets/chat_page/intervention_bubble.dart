@@ -1,3 +1,4 @@
+import 'package:face_off/utils/constants.dart';
 import 'package:flutter/material.dart';
 
 class DynamicIsland extends StatefulWidget {
@@ -74,19 +75,34 @@ class _DynamicIslandState extends State<DynamicIsland>
             },
             child: Container(
               width: 200,
-              height: 35,
+              height: 50,
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(50), color: Colors.black),
               child: Row(
-                children: [
-                  const SizedBox(width: 10),
-                  const Icon(Icons.call, color: Colors.green),
-                  const SizedBox(width: 10),
-                  const Text("2:56",
-                      style: TextStyle(fontSize: 14, color: Colors.white)),
-                  const Spacer(),
-                  Image.asset("assets/images/equalizer.png"),
-                  const SizedBox(width: 10),
+                children: const [
+                  Spacer(),
+                  Text("your ",
+                      style: TextStyle(
+                          fontSize: 14,
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold)),
+                  Text("face",
+                      style: TextStyle(
+                          fontSize: 14,
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold)),
+                  Text("off ",
+                      style: TextStyle(
+                          fontSize: 14,
+                          color: Color(CustomColors.green),
+                          fontWeight: FontWeight.bold)),
+                  Text("challenge",
+                      style: TextStyle(
+                          fontSize: 14,
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold)),
+                  Spacer(),
+                  SizedBox(width: 8),
                 ],
               ),
             ),
@@ -111,7 +127,7 @@ class _DynamicIslandState extends State<DynamicIsland>
                   color: Colors.black,
                   blurRadius: 4,
                   spreadRadius: 0,
-                  offset: Offset(0, 2),
+                  offset: Offset(0, 1),
                 )
               ], borderRadius: BorderRadius.circular(50), color: Colors.black),
               child: Padding(
@@ -119,42 +135,27 @@ class _DynamicIslandState extends State<DynamicIsland>
                 child: Row(
                   children: [
                     const SizedBox(width: 6),
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(50),
-                      child: Image.asset(
-                        "assets/images/kagura.jpg",
-                        width: 55,
-                        height: 55,
-                      ),
-                    ),
                     const SizedBox(width: 10),
                     Column(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: const [
                         Text(
-                          "Jasa Aplikasi",
-                          style: TextStyle(fontSize: 14, color: Colors.white70),
+                          "Your Challenge Prompt",
+                          style: TextStyle(
+                              fontSize: 18,
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold),
                         ),
+                        SizedBox(height: 10),
                         Text("Azhar Rivaldi",
                             style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 20,
-                                color: Colors.white)),
+                                fontWeight: FontWeight.w400,
+                                fontSize: 15,
+                                color: Colors.grey)),
                       ],
                     ),
                     const Spacer(),
-                    GestureDetector(
-                      onTap: () {},
-                      child: const CircleAvatar(
-                          backgroundColor: Colors.redAccent,
-                          child: Icon(Icons.call_end, color: Colors.white)),
-                    ),
-                    const SizedBox(width: 10),
-                    const CircleAvatar(
-                        backgroundColor: Colors.green,
-                        child: Icon(Icons.call, color: Colors.white)),
-                    const SizedBox(width: 10),
                   ],
                 ),
               ),

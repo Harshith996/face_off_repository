@@ -12,6 +12,7 @@ import 'package:face_off/ui/screens/question_4.dart';
 import 'package:face_off/ui/screens/question_5.dart';
 import 'package:face_off/ui/screens/signup_page.dart';
 import 'package:face_off/ui/screens/splash_screen.dart';
+import 'package:face_off/ui/screens/test_page.dart';
 import 'package:face_off/utils/shared_prefs.dart';
 import 'package:flutter/material.dart';
 
@@ -34,7 +35,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: const ChatPage(),
+      home: const TestPage(),
     );
   }
 }

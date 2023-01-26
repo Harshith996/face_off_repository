@@ -119,7 +119,7 @@ class _ChatPage extends State<ChatPage> {
             ],
           )),
       body: Column(children: <Widget>[
-        const DynamicIsland(),
+        // const DynamicIsland(),
         Expanded(
           child: Container(
               decoration: const BoxDecoration(
@@ -128,20 +128,23 @@ class _ChatPage extends State<ChatPage> {
                     topLeft: Radius.circular(40.0),
                     topRight: Radius.circular(40.0)),
               ),
-              child: ClipRRect(
-                  borderRadius: const BorderRadius.only(
-                      topLeft: Radius.circular(40.0),
-                      topRight: Radius.circular(40.0)),
-                  child: ListView.builder(
-                      reverse: true,
-                      padding: const EdgeInsets.only(top: 30),
-                      itemCount: msg.messages.length,
-                      itemBuilder: (BuildContext context, int index) {
-                        final msg.Message message = msg.messages[index];
-                        final bool isMe =
-                            message.sender.id == msg.currentUser.id;
-                        return _buildMessage(message, isMe);
-                      }))),
+              child: Column(children: <Widget>[
+                const DynamicIsland(),
+                ClipRRect(
+                    borderRadius: const BorderRadius.only(
+                        topLeft: Radius.circular(40.0),
+                        topRight: Radius.circular(40.0)),
+                    child: ListView.builder(
+                        reverse: true,
+                        padding: const EdgeInsets.only(top: 30),
+                        itemCount: msg.messages.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          final msg.Message message = msg.messages[index];
+                          final bool isMe =
+                              message.sender.id == msg.currentUser.id;
+                          return _buildMessage(message, isMe);
+                        }))
+              ])),
         ),
         _textBox(),
       ]),
@@ -152,7 +155,7 @@ class _ChatPage extends State<ChatPage> {
     final auth = {
       "user_jid": "test@desktop-gam0g7e/faceoff",
       "password": "qwerty",
-      "host": "192.168.86.25",
+      "host": "172.20.10.3",
       "port": '5222',
       "requireSSLConnection": true,
       "autoDeliveryReceipt": true,
