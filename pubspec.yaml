@@ -46,6 +46,7 @@ dependencies:
   flutter_otp_text_field: ^1.1.1
   socket_io_client: ^2.0.1
   xmpp_plugin: ^2.2.6
+  live_activities: ^1.4.2
   
 
 dev_dependencies:

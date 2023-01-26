@@ -119,7 +119,7 @@ class _ChatPage extends State<ChatPage> {
             ],
           )),
       body: Column(children: <Widget>[
-        const InterventionBubble(),
+        const DynamicIsland(),
         Expanded(
           child: Container(
               decoration: const BoxDecoration(
