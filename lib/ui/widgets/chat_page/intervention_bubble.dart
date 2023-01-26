@@ -1,68 +1,218 @@
-import 'package:face_off/utils/constants.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
-import 'call_expanded.dart';
-import 'call_shrinked.dart';
-
-class InterventionBubble extends StatefulWidget {
-  const InterventionBubble({super.key});
+class DynamicIsland extends StatefulWidget {
+  const DynamicIsland({Key? key}) : super(key: key);
 
   @override
-  State<InterventionBubble> createState() => _InterventionBubble();
+  State<DynamicIsland> createState() => _DynamicIslandState();
 }
 
-class _InterventionBubble extends State<InterventionBubble> {
+class _DynamicIslandState extends State<DynamicIsland>
+    with TickerProviderStateMixin {
+  late final AnimationController callRecController =
+      AnimationController(duration: const Duration(seconds: 1), vsync: this);
+  late final Animation<double> _animation =
+      CurvedAnimation(parent: callRecController, curve: Curves.fastOutSlowIn);
+  late final AnimationController userController =
+      AnimationController(duration: const Duration(seconds: 1), vsync: this);
+  late final Animation<double> _userAnimation =
+      CurvedAnimation(parent: userController, curve: Curves.fastOutSlowIn);
 
-  int activePageIndex = 0;
-  bool shrinked = true;
-  final List<Island> islands =[
-    const Island(
-      shrunkIsland: CallShrinked(), 
-      expandedIsland: CallExpanded(),
-      expandedHeight: 50,
-      expandedBorderRadius: 30)
-  ];
+  bool isRecAnimating = false;
+  bool isUserAnimating = false;
+  bool showBaseTile = true;
+
+  void playRecording() {
+    setState(() {
+      showBaseTile = !showBaseTile;
+      isRecAnimating = !isRecAnimating;
+      if (isRecAnimating) {
+        callRecController.reset();
+      } else {
+        callRecController.forward();
+      }
+    });
+  }
+
+  void playUserTile() {
+    setState(() {
+      showBaseTile = !showBaseTile;
+      isUserAnimating = !isUserAnimating;
+      if (isUserAnimating) {
+        userController.forward();
+      } else {
+        userController.reset();
+      }
+    });
+  }
+
+  void clearCall() {
+    setState(() {
+      showBaseTile = true;
+      isRecAnimating = false;
+      isUserAnimating = false;
+      callRecController.reset();
+      userController.reset();
+    });
+  }
+
+  @override
+  void dispose() {
+    callRecController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
+    callRecordingChip() {
+      return SizeTransition(
+          sizeFactor: _animation,
+          axis: Axis.horizontal,
+          child: GestureDetector(
+            onTap: () {
+              playUserTile();
+            },
+            child: Container(
+              width: 200,
+              height: 35,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(50), color: Colors.black),
+              child: Row(
+                children: [
+                  const SizedBox(width: 10),
+                  const Icon(Icons.call, color: Colors.green),
+                  const SizedBox(width: 10),
+                  const Text("2:56",
+                      style: TextStyle(fontSize: 14, color: Colors.white)),
+                  const Spacer(),
+                  Image.asset("assets/images/equalizer.png"),
+                  const SizedBox(width: 10),
+                ],
+              ),
+            ),
+          ));
+    }
 
-    final activeIsland = islands[activePageIndex];
-    final islandToBeShown = shrinked ? activeIsland.shrunkIsland : activeIsland.expandedIsland;
-    return Container(
-      alignment: Alignment.topCenter,
-      child: GestureDetector(
-        onTap: (() => setState(() {
-          shrinked != shrinked;
-        }
-        )),
-        child: AnimatedContainer(
-          margin: const EdgeInsets.only(top: 10),
-          decoration: BoxDecoration(
-            color: Colors.black,
-            borderRadius: BorderRadius.circular(shrinked ? 20.0 : activeIsland.expandedBorderRadius)
+    notificationChip() {
+      return SizeTransition(
+          sizeFactor: _userAnimation,
+          axis: Axis.vertical,
+          axisAlignment: -1,
+          child: GestureDetector(
+            onTap: () {
+              clearCall();
+            },
+            child: Container(
+              margin: const EdgeInsets.fromLTRB(8, 0, 8, 8),
+              width: 400,
+              height: 90,
+              decoration: BoxDecoration(boxShadow: const [
+                BoxShadow(
+                  color: Colors.black,
+                  blurRadius: 4,
+                  spreadRadius: 0,
+                  offset: Offset(0, 2),
+                )
+              ], borderRadius: BorderRadius.circular(50), color: Colors.black),
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  children: [
+                    const SizedBox(width: 6),
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(50),
+                      child: Image.asset(
+                        "assets/images/kagura.jpg",
+                        width: 55,
+                        height: 55,
+                      ),
+                    ),
+                    const SizedBox(width: 10),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: const [
+                        Text(
+                          "Jasa Aplikasi",
+                          style: TextStyle(fontSize: 14, color: Colors.white70),
+                        ),
+                        Text("Azhar Rivaldi",
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 20,
+                                color: Colors.white)),
+                      ],
+                    ),
+                    const Spacer(),
+                    GestureDetector(
+                      onTap: () {},
+                      child: const CircleAvatar(
+                          backgroundColor: Colors.redAccent,
+                          child: Icon(Icons.call_end, color: Colors.white)),
+                    ),
+                    const SizedBox(width: 10),
+                    const CircleAvatar(
+                        backgroundColor: Colors.green,
+                        child: Icon(Icons.call, color: Colors.white)),
+                    const SizedBox(width: 10),
+                  ],
+                ),
+              ),
+            ),
+          ));
+    }
+
+    baseChip() {
+      return AnimatedOpacity(
+        duration: const Duration(seconds: 1),
+        opacity: 1,
+        child: GestureDetector(
+          onTap: () {
+            playRecording();
+          },
+          child: Container(
+            width: 150,
+            height: 35,
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(50), color: Colors.black),
           ),
-          height: 20,
-          width: MediaQuery.of(context).size.width * 0.5,
-          duration: const Duration(milliseconds: 300),
-          curve: Curves.easeInOut,
-          child: islandToBeShown),
-      )
+        ),
+      );
+    }
+
+    mainStack() {
+      return Stack(
+        alignment: Alignment.center,
+        children: [
+          baseChip(),
+          callRecordingChip(),
+          notificationChip(),
+        ],
+      );
+    }
+
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: Scaffold(
+        backgroundColor: Colors.white,
+        body: Center(
+          child: Column(
+            children: [
+              const SizedBox(height: 40.0),
+              mainStack(),
+              const SizedBox(height: 200.0),
+              const Text(
+                "Flutter\nDynamic Island",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 30,
+                    color: Colors.black),
+              )
+            ],
+          ),
+        ),
+      ),
     );
   }
-}
-
-class Island{
-  const Island(
-    {required this.shrunkIsland, 
-    required this.expandedIsland,
-    required this.expandedHeight,
-    required this.expandedBorderRadius,
-    }
-  );
-  final Widget shrunkIsland;
-  final Widget expandedIsland;
-  final double expandedHeight;
-  final double expandedBorderRadius;
-
 }
