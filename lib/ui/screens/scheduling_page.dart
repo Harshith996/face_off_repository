@@ -16,6 +16,7 @@ class _SchedulingPageState extends State<SchedulingPage> {
   @override
   Widget build(BuildContext context) {
     return (Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: const Color(CustomColors.background),
       body: SafeArea(
         child: Center(
