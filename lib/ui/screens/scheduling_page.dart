@@ -24,7 +24,7 @@ class _SchedulingPageState extends State<SchedulingPage> {
         return Theme(
           data: Theme.of(context).copyWith(
             colorScheme: const ColorScheme.dark(
-              primary: Color(CustomColors.gray),
+              primary: Color(CustomColors.white),
               onPrimary: Color(CustomColors.white),
               onSurface: Colors.black,
             )
@@ -115,12 +115,21 @@ class _SchedulingPageState extends State<SchedulingPage> {
                   const SizedBox(width: 10.0)
                 ],
               ),
-              const SizedBox(
-                height: 50,
-              ),
-              WideDarkBackgroundButton(
-                displayText: 'Schedule',
-                onTap: () {},
+              const Spacer(),
+              MaterialButton(
+                onPressed: _showDatePicker,
+                color: const Color(CustomColors.dark_grey),
+                child: const Padding(
+                  padding: EdgeInsets.all(20.0),
+                  child: Text(
+                    'pick your date',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  
+                  ))
               ),
             ],
           ),
