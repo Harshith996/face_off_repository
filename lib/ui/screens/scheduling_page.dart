@@ -13,8 +13,6 @@ class SchedulingPage extends StatefulWidget {
 }
 
 class _SchedulingPageState extends State<SchedulingPage> {
-  get child => null;
-
 
   void _showDatePicker() {
     showDatePicker(
@@ -108,17 +106,9 @@ class _SchedulingPageState extends State<SchedulingPage> {
                               fontSize: 17,
                               color: const Color(CustomColors.white),
                             )),
-                        GestureDetector( 
-                          onTap: _showDatePicker,
-                          child: TextFormField(
-                            style: const TextStyle(
-                                color: Color(CustomColors.white)),
-                            decoration: const InputDecoration(
-                              enabledBorder: UnderlineInputBorder(
-                                  borderSide: BorderSide(
-                                      width: 1,
-                                      color: Color(CustomColors.white))),
-                            ))),
+                          WideDarkBackgroundButton(
+                            displayText: 'pick a date', 
+                            onTap: _showDatePicker)
                       ],
                     ),
                   ),
