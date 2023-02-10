@@ -13,6 +13,30 @@ class SchedulingPage extends StatefulWidget {
 }
 
 class _SchedulingPageState extends State<SchedulingPage> {
+  get child => null;
+
+
+  void _showDatePicker() {
+    showDatePicker(
+      context: context, 
+      initialDate: DateTime.now(), 
+      firstDate: DateTime(2010), 
+      lastDate: DateTime(2050),
+      builder: (context, child) {
+        return Theme(
+          data: Theme.of(context).copyWith(
+            colorScheme: const ColorScheme.dark(
+              primary: Color(CustomColors.gray),
+              onPrimary: Color(CustomColors.white),
+              onSurface: Colors.black,
+            )
+          ),
+          child: child!,
+        );
+      }
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return (Scaffold(
@@ -84,7 +108,9 @@ class _SchedulingPageState extends State<SchedulingPage> {
                               fontSize: 17,
                               color: const Color(CustomColors.white),
                             )),
-                        TextFormField(
+                        GestureDetector( 
+                          onTap: _showDatePicker,
+                          child: TextFormField(
                             style: const TextStyle(
                                 color: Color(CustomColors.white)),
                             decoration: const InputDecoration(
@@ -92,7 +118,7 @@ class _SchedulingPageState extends State<SchedulingPage> {
                                   borderSide: BorderSide(
                                       width: 1,
                                       color: Color(CustomColors.white))),
-                            )),
+                            ))),
                       ],
                     ),
                   ),
