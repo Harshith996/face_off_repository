@@ -83,7 +83,7 @@ class _DashboardPageState extends State<DashboardPage> {
                               name: "Anonymous 1",
                               description: "typing...",
                               timeLeft: '24h Left',
-                              active: true,
+                              flip: true,
                               imgURL:
                                   'assets/images/profile_pictures/anonymous_icon_1.jpg'),
                           SizedBox(

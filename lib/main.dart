@@ -1,3 +1,4 @@
+import 'package:face_off/ui/screens/anonymous_chat_page.dart';
 import 'package:face_off/ui/screens/chat_page.dart';
 import 'package:face_off/ui/screens/create_profile_1.dart';
 import 'package:face_off/ui/screens/dashboard_page.dart';
@@ -11,6 +12,7 @@ import 'package:face_off/ui/screens/question_2.dart';
 import 'package:face_off/ui/screens/question_3.dart';
 import 'package:face_off/ui/screens/question_4.dart';
 import 'package:face_off/ui/screens/question_5.dart';
+import 'package:face_off/ui/screens/revealed_chat_page.dart';
 import 'package:face_off/ui/screens/scheduling_page.dart';
 import 'package:face_off/ui/screens/signup_page.dart';
 import 'package:face_off/ui/screens/splash_screen.dart';
@@ -37,7 +39,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: const SchedulingPage(),
+      home: const AnonymousChatPage(),
     );
   }
 }
