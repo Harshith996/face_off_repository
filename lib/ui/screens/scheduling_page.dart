@@ -13,9 +13,32 @@ class SchedulingPage extends StatefulWidget {
 }
 
 class _SchedulingPageState extends State<SchedulingPage> {
+
+  void _showDatePicker() {
+    showDatePicker(
+      context: context, 
+      initialDate: DateTime.now(), 
+      firstDate: DateTime(2010), 
+      lastDate: DateTime(2050),
+      builder: (context, child) {
+        return Theme(
+          data: Theme.of(context).copyWith(
+            colorScheme: const ColorScheme.dark(
+              primary: Color(CustomColors.white),
+              onPrimary: Color(CustomColors.white),
+              onSurface: Colors.black,
+            )
+          ),
+          child: child!,
+        );
+      }
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return (Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: const Color(CustomColors.background),
       body: SafeArea(
         child: Center(
@@ -83,27 +106,30 @@ class _SchedulingPageState extends State<SchedulingPage> {
                               fontSize: 17,
                               color: const Color(CustomColors.white),
                             )),
-                        TextFormField(
-                            style: const TextStyle(
-                                color: Color(CustomColors.white)),
-                            decoration: const InputDecoration(
-                              enabledBorder: UnderlineInputBorder(
-                                  borderSide: BorderSide(
-                                      width: 1,
-                                      color: Color(CustomColors.white))),
-                            )),
+                          WideDarkBackgroundButton(
+                            displayText: 'pick a date', 
+                            onTap: _showDatePicker)
                       ],
                     ),
                   ),
                   const SizedBox(width: 10.0)
                 ],
               ),
-              const SizedBox(
-                height: 50,
-              ),
-              WideDarkBackgroundButton(
-                displayText: 'Schedule',
-                onTap: () {},
+              const Spacer(),
+              MaterialButton(
+                onPressed: _showDatePicker,
+                color: const Color(CustomColors.dark_grey),
+                child: const Padding(
+                  padding: EdgeInsets.all(20.0),
+                  child: Text(
+                    'pick your date',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  
+                  ))
               ),
             ],
           ),
