@@ -23,10 +23,14 @@ class ChatPage extends StatefulWidget {
   _ChatPage createState() => _ChatPage();
 }
 
-class _ChatPage extends State<ChatPage> implements DataChangeEvents {
+class _ChatPage extends State<ChatPage>
+    with WidgetsBindingObserver
+    implements DataChangeEvents {
   void _onError(Object error) {
     print(error.toString());
   }
+
+  TextEditingController messageBoxController = TextEditingController();
 
   List<Message> messages = [
     Message(
@@ -91,12 +95,13 @@ class _ChatPage extends State<ChatPage> implements DataChangeEvents {
             Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 mainAxisSize: MainAxisSize.max,
-                children: const <Widget>[
+                children: <Widget>[
               TextField(
-                  decoration: InputDecoration.collapsed(
+                  controller: messageBoxController,
+                  decoration: const InputDecoration.collapsed(
                       hintText: "Enter a message...",
                       hintStyle: TextStyle(color: Color(CustomColors.white))),
-                  style: TextStyle(
+                  style: const TextStyle(
                     color: Color(CustomColors.white),
                     fontSize: 14.0,
                   ))
@@ -119,7 +124,22 @@ class _ChatPage extends State<ChatPage> implements DataChangeEvents {
           child: FittedBox(
               child: FloatingActionButton(
             backgroundColor: const Color(CustomColors.blue),
-            onPressed: () {},
+            onPressed: () async {
+              int id = DateTime.now().millisecondsSinceEpoch;
+              await connection.sendMessageWithType(
+                  "test2@desktop-gam0g7e",
+                  messageBoxController.text,
+                  "$id",
+                  DateTime.now().millisecondsSinceEpoch);
+              setState(() {
+                messages.add(Message(
+                    sender: currentUser,
+                    time: '7:00 PM',
+                    text: messageBoxController.text,
+                    unread: true));
+              });
+              messageBoxController.clear();
+            },
             child: const Icon(
               Icons.send,
               size: 25,
@@ -172,7 +192,9 @@ class _ChatPage extends State<ChatPage> implements DataChangeEvents {
   @override
   void initState() {
     super.initState();
+    XmppConnection.addListener(this);
     connect().whenComplete(() => null);
+    WidgetsBinding.instance.addObserver(this);
   }
 
   @override
@@ -254,7 +276,8 @@ class _ChatPage extends State<ChatPage> implements DataChangeEvents {
                       padding: const EdgeInsets.only(top: 30),
                       itemCount: messages.length,
                       itemBuilder: (BuildContext context, int index) {
-                        final Message message = messages[index];
+                        final Message message =
+                            messages[messages.length - 1 - index];
                         final bool isMe = message.sender.id == currentUser.id;
                         return _buildMessage(message, isMe);
                       }))),
@@ -303,14 +326,20 @@ class _ChatPage extends State<ChatPage> implements DataChangeEvents {
   @override
   void onChatMessage(MessageChat messageChat) {
     print("jkdshfjiowe;klnfhoeiwnfckweli;knf");
-    print('onChatMessage: ${messageChat}');
-    setState(() {
-      messages.add(Message(
-          sender: anon2,
-          time: '7:00 PM',
-          text: messageChat.body.toString(),
-          unread: true));
-    });
+    print(messageChat.toEventData());
+    print('onChatMessage: ${messageChat.body.toString()}');
+    print(messageChat.senderJid.toString());
+    if (messageChat.body.toString() != "" &&
+        messageChat.senderJid.toString() != "") {
+      setState(() {
+        messages.add(Message(
+            sender: anon2,
+            time: '7:00 PM',
+            text: messageChat.body.toString(),
+            unread: true));
+        print(messages.length);
+      });
+    }
   }
 
   @override
