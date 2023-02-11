@@ -4,7 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:face_off/utils/constants.dart';
-import '../models/message_model.dart' as msg;
+import 'package:xmpp_plugin/success_response_event.dart';
+import 'package:xmpp_plugin/models/present_mode.dart';
+import 'package:xmpp_plugin/models/message_model.dart';
+import 'package:xmpp_plugin/models/connection_event.dart';
+import 'package:xmpp_plugin/models/chat_state_model.dart';
+import 'package:xmpp_plugin/error_response_event.dart';
+import '../models/message_model.dart';
 import 'package:xmpp_plugin/xmpp_plugin.dart';
 //import 'package:face_off/ui/widgets/chat_page/intervention_bubble.dart';
 
@@ -17,10 +23,51 @@ class ChatPage extends StatefulWidget {
   _ChatPage createState() => _ChatPage();
 }
 
-class _ChatPage extends State<ChatPage> {
+class _ChatPage extends State<ChatPage> implements DataChangeEvents {
   void _onError(Object error) {
     print(error.toString());
   }
+
+  List<Message> messages = [
+    Message(
+      sender: anon2,
+      time: '5:30 PM',
+      text: 'Hey, how\'s it going? What did you do today?',
+      unread: true,
+    ),
+    Message(
+      sender: currentUser,
+      time: '4:30 PM',
+      text: 'Just walked my doge. She was super duper cute. The best pupper!!',
+      unread: true,
+    ),
+    Message(
+      sender: anon2,
+      time: '3:45 PM',
+      text: 'How\'s the doggo?',
+      unread: true,
+    ),
+    Message(
+      sender: anon2,
+      time: '3:15 PM',
+      text: 'All the food',
+      unread: true,
+    ),
+    Message(
+      sender: currentUser,
+      time: '2:30 PM',
+      text: 'Nice! What kind of food did you eat?',
+      unread: true,
+    ),
+    Message(
+      sender: anon2,
+      time: '2:00 PM',
+      text: 'I ate so much food today.',
+      unread: true,
+    ),
+  ];
+
+  static late XmppConnection connection;
 
   _textBox() {
     return Row(mainAxisAlignment: MainAxisAlignment.center, children: [
@@ -82,7 +129,7 @@ class _ChatPage extends State<ChatPage> {
     ]);
   }
 
-  _buildMessage(msg.Message message, bool isMe) {
+  _buildMessage(Message message, bool isMe) {
     return Container(
         margin: isMe
             ? const EdgeInsets.only(
@@ -205,11 +252,10 @@ class _ChatPage extends State<ChatPage> {
                   child: ListView.builder(
                       reverse: true,
                       padding: const EdgeInsets.only(top: 30),
-                      itemCount: msg.messages.length,
+                      itemCount: messages.length,
                       itemBuilder: (BuildContext context, int index) {
-                        final msg.Message message = msg.messages[index];
-                        final bool isMe =
-                            message.sender.id == msg.currentUser.id;
+                        final Message message = messages[index];
+                        final bool isMe = message.sender.id == currentUser.id;
                         return _buildMessage(message, isMe);
                       }))),
         ),
@@ -223,7 +269,7 @@ class _ChatPage extends State<ChatPage> {
     final auth = {
       "user_jid": "test@desktop-gam0g7e/faceoff",
       "password": "qwerty",
-      "host": "192.168.86.29",
+      "host": "172.20.10.3",
       "port": '5222',
       "requireSSLConnection": true,
       "autoDeliveryReceipt": true,
@@ -231,12 +277,69 @@ class _ChatPage extends State<ChatPage> {
       "automaticReconnection": true,
     };
 
-    XmppConnection connection = XmppConnection(auth);
+    connection = XmppConnection(auth);
     await connection.start(_onError);
     await connection.login();
     var id = SharedPrefs().id.toString() +
         DateTime.now().millisecondsSinceEpoch.toString();
     await connection.sendMessageWithType("test2@desktop-gam0g7e",
         "This is a test message", id, DateTime.now().millisecondsSinceEpoch);
+    // connection.joinMucGroup("trial");
+  }
+
+  @override
+  void onXmppError(ErrorResponseEvent errorResponseEvent) {
+    print(
+        'receiveEvent onXmppError: ${errorResponseEvent.toErrorResponseData().toString()}');
+  }
+
+  @override
+  void onSuccessEvent(SuccessResponseEvent successResponseEvent) {
+    print("jkdshfjiowe;klnfhoeiwnfckweli;knf");
+    print(
+        'receiveEvent successEventReceive: ${successResponseEvent.toSuccessResponseData().toString()}');
+  }
+
+  @override
+  void onChatMessage(MessageChat messageChat) {
+    print("jkdshfjiowe;klnfhoeiwnfckweli;knf");
+    print('onChatMessage: ${messageChat}');
+    setState(() {
+      messages.add(Message(
+          sender: anon2,
+          time: '7:00 PM',
+          text: messageChat.body.toString(),
+          unread: true));
+    });
+  }
+
+  @override
+  void onGroupMessage(MessageChat messageChat) {
+    print("jkdshfjiowe;klnfhoeiwnfckweli;knf");
+    print('onGroupMessage: ${messageChat.toEventData()}');
+  }
+
+  @override
+  void onNormalMessage(MessageChat messageChat) {
+    print("jkdshfjiowe;klnfhoeiwnfckweli;knf");
+    print('onNormalMessage: ${messageChat.toEventData()}');
+  }
+
+  @override
+  void onPresenceChange(PresentModel presentModel) {
+    print("jkdshfjiowe;klnfhoeiwnfckweli;knf");
+    print('onPresenceChange ~~>>${presentModel.toJson()}');
+  }
+
+  @override
+  void onChatStateChange(ChatState chatState) {
+    print("jkdshfjiowe;klnfhoeiwnfckweli;knf");
+    print('onChatStateChange ~~>>$chatState');
+  }
+
+  @override
+  void onConnectionEvents(ConnectionEvent connectionEvent) {
+    print('onConnectionEvents ~~>>${connectionEvent.toJson()}');
+    setState(() {});
   }
 }
