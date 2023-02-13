@@ -127,7 +127,7 @@ class _ChatPage extends State<ChatPage>
             onPressed: () async {
               int id = DateTime.now().millisecondsSinceEpoch;
               await connection.sendMessageWithType(
-                  "test2@desktop-gam0g7e",
+                  "test2@123.202.178.68.host.secureserver.net",
                   messageBoxController.text,
                   "$id",
                   DateTime.now().millisecondsSinceEpoch);
@@ -290,9 +290,9 @@ class _ChatPage extends State<ChatPage>
 
   Future<void> connect() async {
     final auth = {
-      "user_jid": "test@desktop-gam0g7e/faceoff",
+      "user_jid": "test@123.202.178.68.host.secureserver.net",
       "password": "qwerty",
-      "host": "172.20.10.3",
+      "host": "68.178.202.123",
       "port": '5222',
       "requireSSLConnection": true,
       "autoDeliveryReceipt": true,
@@ -305,8 +305,11 @@ class _ChatPage extends State<ChatPage>
     await connection.login();
     var id = SharedPrefs().id.toString() +
         DateTime.now().millisecondsSinceEpoch.toString();
-    await connection.sendMessageWithType("test2@desktop-gam0g7e",
-        "This is a test message", id, DateTime.now().millisecondsSinceEpoch);
+    await connection.sendMessageWithType(
+        "test2@123.202.178.68.host.secureserver.net",
+        "This is a test message",
+        id,
+        DateTime.now().millisecondsSinceEpoch);
     // connection.joinMucGroup("trial");
   }
 
