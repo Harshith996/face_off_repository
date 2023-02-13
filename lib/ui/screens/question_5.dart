@@ -2,6 +2,7 @@
 
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:face_off/ui/screens/loading_page.dart';
+import 'package:face_off/ui/screens/profile_complete_page.dart';
 import 'package:face_off/ui/screens/question_1.dart';
 import 'package:face_off/ui/shared/color_items/square_top_down_gradient.dart';
 import 'package:face_off/ui/shared/widgets/wide_dark_background_button.dart';
@@ -126,7 +127,7 @@ class _QuestionFivePageState extends State<QuestionFivePage> {
                 Navigator.pushReplacement(
                   context,
                   PageRouteBuilder(
-                    pageBuilder: (c, a1, a2) => const LoadingPage(),
+                    pageBuilder: (c, a1, a2) => const ProfileCompletePage(),
                     transitionsBuilder: (c, anim, a2, child) =>
                         FadeTransition(opacity: anim, child: child),
                     transitionDuration: const Duration(milliseconds: 1000),

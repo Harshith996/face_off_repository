@@ -2,6 +2,7 @@
 
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:face_off/ui/screens/otp_verification.dart';
+import 'package:face_off/ui/screens/question_1.dart';
 import 'package:face_off/ui/shared/widgets/divider.dart';
 import 'package:face_off/utils/shared_prefs.dart';
 import 'package:flutter/material.dart';
@@ -245,9 +246,13 @@ class _SignUpPageState extends State<SignUpPage> {
                             )),
                         const Spacer(),
                         WideDarkBackgroundButton(
-                            displayText: "Sign Up",
+                            displayText: "Questions",
                             onTap: () {
                               setState(() => activeIndex = 1);
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => QuestionOnePage()));
                               signupUser(
                                   pControl.value.text,
                                   fnameController.text,

@@ -21,11 +21,11 @@ class _QuestionThreePageState extends State<QuestionThreePage> {
   int activeIndex = 0;
   CarouselController carouselController = CarouselController();
   final hangout_spot_imgs = [
-    'assets/images/hobbies/hobby_1.jpg',
-    'assets/images/hobbies/hobby_2.jpg',
-    'assets/images/hobbies/hobby_3.jpg',
-    'assets/images/hobbies/hobby_4.jpg',
-    'assets/images/hobbies/hobby_5.jpg',
+    'assets/images/hangout_spots/spot_1.jpg',
+    'assets/images/hangout_spots/spot_2.jpg',
+    'assets/images/hangout_spots/spot_3.jpg',
+    'assets/images/hangout_spots/spot_4.jpg',
+    'assets/images/hangout_spots/spot_5.jpg',
   ];
   @override
   Widget build(BuildContext context) {

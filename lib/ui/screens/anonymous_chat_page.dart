@@ -132,78 +132,78 @@ class _AnonymousChatPageState extends State<AnonymousChatPage> {
                 ),
               ),
 
-              const SizedBox(
-                height: 10,
-              ),
-              const ActiveChat(
-                  name: "Anonymous 2",
-                  description: "whatsup bro",
-                  timeLeft: '24h Left',
-                  flip: true,
-                  imgURL:
-                      'assets/images/profile_pictures/anonymous_icon_2.jpg'),
+              // const SizedBox(
+              //   height: 10,
+              // ),
+              // const ActiveChat(
+              //     name: "Anonymous 2",
+              //     description: "whatsup bro",
+              //     timeLeft: '24h Left',
+              //     flip: true,
+              //     imgURL:
+              //         'assets/images/profile_pictures/anonymous_icon_2.jpg'),
 
-              const SizedBox(
-                height: 20,
-                width: 200,
-                child: Divider(
-                  height: 1,
-                  thickness: 2,
-                  color: Color(CustomColors.gray),
-                ),
-              ),
+              // const SizedBox(
+              //   height: 20,
+              //   width: 200,
+              //   child: Divider(
+              //     height: 1,
+              //     thickness: 2,
+              //     color: Color(CustomColors.gray),
+              //   ),
+              // ),
 
-              const ActiveChat(
-                  name: "Anonymous 3",
-                  description: "brooo",
-                  timeLeft: '24h Left',
-                  flip: true,
-                  imgURL:
-                      'assets/images/profile_pictures/anonymous_icon_3.jpg'),
-              const SizedBox(
-                height: 20,
-                width: 200,
-                child: Divider(
-                  height: 1,
-                  thickness: 2,
-                  color: Color(CustomColors.gray),
-                ),
-              ),
+              // const ActiveChat(
+              //     name: "Anonymous 3",
+              //     description: "brooo",
+              //     timeLeft: '24h Left',
+              //     flip: true,
+              //     imgURL:
+              //         'assets/images/profile_pictures/anonymous_icon_3.jpg'),
+              // const SizedBox(
+              //   height: 20,
+              //   width: 200,
+              //   child: Divider(
+              //     height: 1,
+              //     thickness: 2,
+              //     color: Color(CustomColors.gray),
+              //   ),
+              // ),
 
-              const ActiveChat(
-                  name: "Anonymous 4",
-                  description: "henny",
-                  timeLeft: '24h Left',
-                  flip: true,
-                  imgURL:
-                      'assets/images/profile_pictures/anonymous_icon_4.jpg'),
+              // const ActiveChat(
+              //     name: "Anonymous 4",
+              //     description: "henny",
+              //     timeLeft: '24h Left',
+              //     flip: true,
+              //     imgURL:
+              //         'assets/images/profile_pictures/anonymous_icon_4.jpg'),
 
-              const SizedBox(
-                height: 20,
-                width: 200,
-                child: Divider(
-                  height: 1,
-                  thickness: 2,
-                  color: Color(CustomColors.gray),
-                ),
-              ),
+              // const SizedBox(
+              //   height: 20,
+              //   width: 200,
+              //   child: Divider(
+              //     height: 1,
+              //     thickness: 2,
+              //     color: Color(CustomColors.gray),
+              //   ),
+              // ),
 
-              const ActiveChat(
-                  name: "Anonymous 5",
-                  description: "Hi!",
-                  timeLeft: '24h Left',
-                  flip: false,
-                  imgURL:
-                      'assets/images/profile_pictures/anonymous_icon_5.jpg'),
-              const SizedBox(
-                height: 20,
-                width: 200,
-                child: Divider(
-                  height: 1,
-                  thickness: 2,
-                  color: Color(CustomColors.gray),
-                ),
-              ),
+              // const ActiveChat(
+              //     name: "Anonymous 5",
+              //     description: "Hi!",
+              //     timeLeft: '24h Left',
+              //     flip: false,
+              //     imgURL:
+              //         'assets/images/profile_pictures/anonymous_icon_5.jpg'),
+              // const SizedBox(
+              //   height: 20,
+              //   width: 200,
+              //   child: Divider(
+              //     height: 1,
+              //     thickness: 2,
+              //     color: Color(CustomColors.gray),
+              //   ),
+              // ),
               // : WideDarkBackgroundButton(
               //     displayText: "Match me",
               //     onTap: () {

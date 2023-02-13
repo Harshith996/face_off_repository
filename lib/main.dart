@@ -7,6 +7,7 @@ import 'package:face_off/ui/screens/loading_page.dart';
 import 'package:face_off/ui/screens/login_page.dart';
 import 'package:face_off/ui/screens/meetup_decision_page.dart';
 import 'package:face_off/ui/screens/otp_verification.dart';
+import 'package:face_off/ui/screens/profile_complete_page.dart';
 import 'package:face_off/ui/screens/question_1.dart';
 import 'package:face_off/ui/screens/question_2.dart';
 import 'package:face_off/ui/screens/question_3.dart';

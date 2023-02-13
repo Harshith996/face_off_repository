@@ -1,4 +1,5 @@
 import 'package:face_off/main.dart';
+import 'package:face_off/ui/screens/anonymous_chat_page.dart';
 import 'package:face_off/utils/shared_prefs.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -212,7 +213,19 @@ class _ChatPage extends State<ChatPage>
                 children: [
                   IconButton(
                       iconSize: 5.0,
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.pushReplacement(
+                          context,
+                          PageRouteBuilder(
+                            pageBuilder: (c, a1, a2) =>
+                                const AnonymousChatPage(),
+                            transitionsBuilder: (c, anim, a2, child) =>
+                                FadeTransition(opacity: anim, child: child),
+                            transitionDuration:
+                                const Duration(milliseconds: 500),
+                          ),
+                        );
+                      },
                       icon: Image.asset('assets/images/back_arrow.png')),
                   const SizedBox(width: 20.0),
                   Container(
