@@ -33,6 +33,7 @@ class _AnonymousChatPageState extends State<AnonymousChatPage> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               FloatingActionButton(
+                heroTag: "tag1",
                 backgroundColor: const Color(CustomColors.background),
                 onPressed: () {},
                 child: const Icon(
@@ -47,6 +48,7 @@ class _AnonymousChatPageState extends State<AnonymousChatPage> {
                 child: Image.asset('assets/images/faceoff_logo.png'),
               ),
               FloatingActionButton(
+                heroTag: 'tag2',
                 backgroundColor: const Color(CustomColors.background),
                 onPressed: () {},
                 child: const Icon(
