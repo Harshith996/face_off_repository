@@ -332,7 +332,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                     context,
                                     MaterialPageRoute(
                                         builder: (context) =>
-                                            QuestionOnePage()));
+                                            OtpVerification()));
                               }
 
                               signupUser(

@@ -1,3 +1,5 @@
+import 'package:face_off/ui/screens/question_1.dart';
+import 'package:face_off/ui/screens/signup_page.dart';
 import 'package:face_off/ui/shared/widgets/divider.dart';
 import 'package:face_off/utils/shared_prefs.dart';
 import 'package:flutter/material.dart';
@@ -90,15 +92,25 @@ class OtpVerification extends StatelessWidget {
                       backgroundColor: const Color(CustomColors.background),
                       side: const BorderSide(
                           color: Color(CustomColors.background))),
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => SignUpPage()));
+                  },
                   child: const Text(
-                    "Re-enter phone number",
+                    "Restart Sign Up",
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
                         color: Color(CustomColors.white)),
                   )),
               const Spacer(),
-              WideDarkBackgroundButton(displayText: "Sign Up", onTap: () {})
+              WideDarkBackgroundButton(
+                  displayText: "Sign up and Proceed",
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => QuestionOnePage()));
+                  })
             ],
           ),
         )),
