@@ -1,5 +1,6 @@
 import 'package:face_off/ui/screens/anonymous_chat_page.dart';
 import 'package:face_off/ui/screens/chat_page.dart';
+import 'package:face_off/ui/screens/dashboard_page.dart';
 import 'package:face_off/ui/screens/otp_verification.dart';
 import 'package:face_off/ui/screens/scheduling_page.dart';
 import 'package:face_off/ui/screens/splash_screen.dart';
@@ -25,7 +26,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: SplashScreenPage(),
+      home: AnonymousChatPage(),
     );
   }
 }
