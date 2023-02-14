@@ -1,3 +1,4 @@
+import 'package:face_off/ui/screens/chat_page.dart';
 import 'package:face_off/ui/screens/loading_page.dart';
 import 'package:face_off/ui/shared/widgets/bottom_navbar.dart';
 import 'package:face_off/ui/shared/widgets/dangerous_binary_option_buttons.dart';
@@ -28,6 +29,7 @@ class _AnonymousChatPageState extends State<AnonymousChatPage> {
     return Scaffold(
         appBar: AppBar(
           backgroundColor: const Color(CustomColors.background),
+          automaticallyImplyLeading: false,
           centerTitle: true,
           title: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -73,7 +75,7 @@ class _AnonymousChatPageState extends State<AnonymousChatPage> {
               Container(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
-                  children: const [
+                  children: [
                     Align(
                       alignment: Alignment.centerLeft,
                       child: Text(
@@ -85,15 +87,15 @@ class _AnonymousChatPageState extends State<AnonymousChatPage> {
                         ),
                       ),
                     ),
-                    SizedBox(height: 10.0),
+                    const SizedBox(height: 10.0),
                     Align(
                       alignment: Alignment(-0.97, 0),
                       child: LineDivider(length: 130),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 4,
                       width: 200,
                       child: Divider(
@@ -102,17 +104,27 @@ class _AnonymousChatPageState extends State<AnonymousChatPage> {
                         color: Color(CustomColors.gray),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
-                    ActiveChat(
-                        name: "Anonymous 1",
-                        description: "typing...",
-                        timeLeft: '24h Left',
-                        flip: true,
-                        imgURL:
-                            'assets/images/profile_pictures/anonymous_icon_1.jpg'),
-                    SizedBox(
+
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => ChatPage()));
+                      },
+                      child: ActiveChat(
+                          name: "Anonymous 1",
+                          description: "typing...",
+                          timeLeft: '24h Left',
+                          flip: true,
+                          imgURL:
+                              'assets/images/profile_pictures/anonymous_icon_1.jpg'),
+                    ),
+
+                    const SizedBox(
                       height: 10,
                     ),
 

@@ -33,44 +33,7 @@ class _ChatPage extends State<ChatPage>
 
   TextEditingController messageBoxController = TextEditingController();
 
-  List<Message> messages = [
-    Message(
-      sender: anon2,
-      time: '5:30 PM',
-      text: 'Hey, how\'s it going? What did you do today?',
-      unread: true,
-    ),
-    Message(
-      sender: currentUser,
-      time: '4:30 PM',
-      text: 'Just walked my doge. She was super duper cute. The best pupper!!',
-      unread: true,
-    ),
-    Message(
-      sender: anon2,
-      time: '3:45 PM',
-      text: 'How\'s the doggo?',
-      unread: true,
-    ),
-    Message(
-      sender: anon2,
-      time: '3:15 PM',
-      text: 'All the food',
-      unread: true,
-    ),
-    Message(
-      sender: currentUser,
-      time: '2:30 PM',
-      text: 'Nice! What kind of food did you eat?',
-      unread: true,
-    ),
-    Message(
-      sender: anon2,
-      time: '2:00 PM',
-      text: 'I ate so much food today.',
-      unread: true,
-    ),
-  ];
+  List<Message> messages = [];
 
   static late XmppConnection connection;
 
@@ -203,6 +166,7 @@ class _ChatPage extends State<ChatPage>
     return Scaffold(
       backgroundColor: const Color(CustomColors.background),
       appBar: AppBar(
+          automaticallyImplyLeading: false,
           toolbarHeight: 73,
           backgroundColor: const Color(CustomColors.dark_grey),
           elevation: 0.0,
@@ -307,7 +271,7 @@ class _ChatPage extends State<ChatPage>
       "password": "qwerty",
       "host": "68.178.202.123",
       "port": '5222',
-      "requireSSLConnection": true,
+      "requireSSLConnection": false,
       "autoDeliveryReceipt": true,
       "useStreamManagement": false,
       "automaticReconnection": true,
@@ -385,6 +349,7 @@ class _ChatPage extends State<ChatPage>
   @override
   void onConnectionEvents(ConnectionEvent connectionEvent) {
     print('onConnectionEvents ~~>>${connectionEvent.toJson()}');
+    print(connectionEvent.error);
     setState(() {});
   }
 }

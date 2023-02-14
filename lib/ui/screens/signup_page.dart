@@ -1,9 +1,11 @@
 // ignore_for_file: non_constant_identifier_names
 
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:face_off/ui/screens/login_page.dart';
 import 'package:face_off/ui/screens/otp_verification.dart';
 import 'package:face_off/ui/screens/question_1.dart';
 import 'package:face_off/ui/shared/widgets/divider.dart';
+import 'package:face_off/utils/common_ui.dart';
 import 'package:face_off/utils/shared_prefs.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -43,6 +45,7 @@ class _SignUpPageState extends State<SignUpPage> {
   final pControl = TextEditingController();
   final passwordController = TextEditingController();
   final rpasswordController = TextEditingController();
+  final genderController = TextEditingController();
 
   // sign user in method
   void signUserIn() {}
@@ -153,14 +156,56 @@ class _SignUpPageState extends State<SignUpPage> {
                                       color: Color(CustomColors.white)),
                                   labelText: 'Confirm Password',
                                 ))),
+                        const SizedBox(height: 50.0),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              'Already a member?',
+                              style: TextStyle(color: Colors.white),
+                            ),
+                            const SizedBox(width: 4),
+                            GestureDetector(
+                              onTap: () {
+                                // Navigator.pop(context);
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => LoginPage()));
+                              },
+                              child: const Text(
+                                'Log in',
+                                style: TextStyle(
+                                  color: Color(CustomColors.green),
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
                         const Spacer(),
                         WideDarkBackgroundButton(
                             displayText: "Continue",
                             onTap: () {
-                              setState(() => activeIndex = 1);
-                              controller.nextPage(
-                                  duration: const Duration(milliseconds: 200),
-                                  curve: Curves.easeIn);
+                              if (pControl.text == '' ||
+                                  passwordController.text == '' ||
+                                  rpasswordController.text == '') {
+                                showAlertDialog(context,
+                                    "Atleast one of the required fields is blank");
+                              } else if ((pControl.text.toString()).length !=
+                                  10) {
+                                showAlertDialog(
+                                    context, "Enter a 10 digit phone number");
+                              } else if (passwordController.text !=
+                                  rpasswordController.text) {
+                                showAlertDialog(
+                                    context, "Your passwords do not match");
+                              } else {
+                                setState(() => activeIndex = 1);
+                                controller.nextPage(
+                                    duration: const Duration(milliseconds: 200),
+                                    curve: Curves.easeIn);
+                              }
                             }),
                       ],
                     ),
@@ -244,15 +289,52 @@ class _SignUpPageState extends State<SignUpPage> {
                                 );
                               }).toList(),
                             )),
+                        const SizedBox(height: 50.0),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              'Already a member?',
+                              style: TextStyle(color: Colors.white),
+                            ),
+                            const SizedBox(width: 4),
+                            GestureDetector(
+                              onTap: () {
+                                // Navigator.pop(context);
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => LoginPage()));
+                              },
+                              child: const Text(
+                                'Log in',
+                                style: TextStyle(
+                                  color: Color(CustomColors.green),
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
                         const Spacer(),
                         WideDarkBackgroundButton(
                             displayText: "Questions",
                             onTap: () {
                               setState(() => activeIndex = 1);
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => QuestionOnePage()));
+                              if (fnameController.text == '' ||
+                                  lnameController.text == '' ||
+                                  gender == null) {
+                                showAlertDialog(context,
+                                    "Atleast one of the required fields is blank");
+                              } else {
+                                setState(() => activeIndex = 1);
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            QuestionOnePage()));
+                              }
+
                               signupUser(
                                   pControl.value.text,
                                   fnameController.text,

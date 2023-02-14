@@ -21,13 +21,6 @@ class CustomColors {
   static const red = 0xFFCD2F2F;
 }
 
-class WebConstants {
-  // static const host = 'http://192.168.1.103:8080/social_app/';
-  static const host = 'http://172.20.10.3:8080/social_app/';
-  static const userLogin = '${host}user_operations/login_user.php';
-  static const userSignup = '${host}user_operations/create_user.php';
-}
-
 class Keys {
   static const key_id = 'key_id';
   static const key_phonenumber = 'key_phonenumber';

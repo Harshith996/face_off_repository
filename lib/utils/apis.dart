@@ -1,7 +1,7 @@
 // ignore_for_file: constant_identifier_names
 
 class ApiUrls {
-  static const root_url = "http://172.20.10.3:8080/face_off/api/";
+  static const root_url = "http://ramensesh.com/api/";
   static const url_login = "${root_url}user_operations/userLogin.php";
   static const url_signup = "${root_url}user_operations/userSignup.php";
   static const url_request_otp = "${root_url}user_operations/requestOTP.php";
