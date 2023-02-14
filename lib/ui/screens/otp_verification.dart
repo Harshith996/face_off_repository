@@ -32,6 +32,7 @@ class OtpVerification extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print(SharedPrefs().phone_number);
     requestOTP(SharedPrefs().phone_number, context);
     return Scaffold(
       backgroundColor: const Color(CustomColors.background),

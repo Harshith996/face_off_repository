@@ -220,6 +220,9 @@ class _SignUpPageState extends State<SignUpPage> {
                                   rpasswordController.text) {
                                 showAlertDialog(
                                     context, "Your passwords do not match");
+                              } else if ((passwordController.text).length < 6) {
+                                showAlertDialog(context,
+                                    "Your password must be longer than 6 characters");
                               } else {
                                 setState(() => activeIndex = 1);
                                 controller.nextPage(
@@ -348,11 +351,11 @@ class _SignUpPageState extends State<SignUpPage> {
                                     "Atleast one of the required fields is blank");
                               } else {
                                 setState(() => activeIndex = 1);
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                            OtpVerification()));
+                                // Navigator.push(
+                                //     context,
+                                //     MaterialPageRoute(
+                                //         builder: (context) =>
+                                //             OtpVerification()));
                               }
 
                               signupUser(
@@ -403,6 +406,10 @@ class _SignUpPageState extends State<SignUpPage> {
     final response = await http.post(Uri.parse(ApiUrls.url_signup),
         headers: headers, body: body);
     final responseJSON = json.decode(response.body);
+    print("BRoke");
+    print(responseJSON['error']);
+    print(responseJSON['user_id']);
+    print(response.body);
     if (responseJSON['error'] == false) {
       SharedPrefs().id = responseJSON['user_id'];
       SharedPrefs().phone_number = responseJSON['phone_number'];
