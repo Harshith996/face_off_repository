@@ -28,6 +28,7 @@ class _RevealedChatPageState extends State<RevealedChatPage> {
     return Scaffold(
         appBar: AppBar(
           backgroundColor: const Color(CustomColors.background),
+          automaticallyImplyLeading: false,
           centerTitle: true,
           title: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -93,6 +94,7 @@ class _RevealedChatPageState extends State<RevealedChatPage> {
               ),
             ),
           ),
-        ));
+        ),
+        bottomNavigationBar: CustomNavbar());
   }
 }

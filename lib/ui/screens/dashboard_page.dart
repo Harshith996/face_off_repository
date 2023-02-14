@@ -176,7 +176,7 @@ class _DashboardPageState extends State<DashboardPage> {
             ],
           ),
         ))),
-        bottomNavigationBar: const CustomNavbar());
+        bottomNavigationBar: CustomNavbar());
   }
 
   void _onError(Object error) {

@@ -66,24 +66,44 @@ class _SignUpPageState extends State<SignUpPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              const Align(
+              Align(
                 alignment: Alignment.centerLeft,
-                child: Text(
-                  'Sign Up',
-                  style: TextStyle(
-                    fontSize: 30,
-                    color: Color(CustomColors.white),
-                    fontWeight: FontWeight.bold,
-                  ),
+                child: Row(
+                  children: [
+                    activeIndex == 1
+                        ? IconButton(
+                            iconSize: 5.0,
+                            onPressed: () {
+                              setState(() => activeIndex = 0);
+                              controller.previousPage(
+                                  duration: const Duration(milliseconds: 200),
+                                  curve: Curves.easeIn);
+                            },
+                            icon: Image.asset('assets/images/back_arrow.png'))
+                        : Container(),
+                    const Text(
+                      'Sign Up',
+                      style: TextStyle(
+                        fontSize: 30,
+                        color: Color(CustomColors.white),
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
                 ),
               ),
               const SizedBox(
                 height: 10,
               ),
-              const Align(
-                alignment: Alignment.centerLeft,
-                child: LineDivider(length: 70),
-              ),
+              activeIndex == 0
+                  ? const Align(
+                      alignment: Alignment.centerLeft,
+                      child: LineDivider(length: 70),
+                    )
+                  : const Align(
+                      alignment: Alignment(-0.6, 0),
+                      child: LineDivider(length: 70),
+                    ),
               const SizedBox(
                 height: 50,
               ),
@@ -318,7 +338,7 @@ class _SignUpPageState extends State<SignUpPage> {
                         ),
                         const Spacer(),
                         WideDarkBackgroundButton(
-                            displayText: "Questions",
+                            displayText: "Verification",
                             onTap: () {
                               setState(() => activeIndex = 1);
                               if (fnameController.text == '' ||

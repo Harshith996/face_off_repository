@@ -294,7 +294,7 @@ class _AnonymousChatPageState extends State<AnonymousChatPage> {
             ],
           ),
         ))),
-        bottomNavigationBar: const CustomNavbar());
+        bottomNavigationBar: CustomNavbar());
   }
 
   void _onError(Object error) {
