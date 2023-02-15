@@ -104,14 +104,6 @@ class OtpVerification extends StatelessWidget {
                         color: Color(CustomColors.white)),
                   )),
               const Spacer(),
-              WideDarkBackgroundButton(
-                  displayText: "Sign up and Proceed",
-                  onTap: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => QuestionOnePage()));
-                  })
             ],
           ),
         )),
@@ -152,7 +144,7 @@ class OtpVerification extends StatelessWidget {
       Navigator.pushReplacement(
         context,
         PageRouteBuilder(
-          pageBuilder: (c, a1, a2) => const DashboardPage(),
+          pageBuilder: (c, a1, a2) => const QuestionOnePage(),
           transitionsBuilder: (c, anim, a2, child) =>
               FadeTransition(opacity: anim, child: child),
           transitionDuration: const Duration(milliseconds: 1000),

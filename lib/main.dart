@@ -1,16 +1,26 @@
 import 'package:face_off/ui/screens/anonymous_chat_page.dart';
 import 'package:face_off/ui/screens/chat_page.dart';
+import 'package:face_off/ui/screens/dashboard_page.dart';
 import 'package:face_off/ui/screens/otp_verification.dart';
 import 'package:face_off/ui/screens/scheduling_page.dart';
 import 'package:face_off/ui/screens/signup_page.dart';
 import 'package:face_off/ui/screens/splash_screen.dart';
 import 'package:face_off/utils/shared_prefs.dart';
 import 'package:flutter/material.dart';
+import 'package:face_off/ui/screens/take_picture_screen.dart';
+import 'package:camera/camera.dart';
 
+var firstCamera;
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await SharedPrefs().init();
+  // Obtain a list of the available cameras on the device.
 
+  final cameras = await availableCameras();
+  firstCamera = cameras.first;
+
+  // Get a specific camera from the list of available cameras.
+
+  await SharedPrefs().init();
   runApp(const MyApp());
 }
 
@@ -26,7 +36,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: SignUpPage(),
+      home: TakePictureScreen(camera: firstCamera),
     );
   }
 }
