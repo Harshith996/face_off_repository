@@ -38,6 +38,7 @@ class _QuestionTwoPageState extends State<QuestionTwoPage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             // Heading
+            const Spacer(),
             const Text(
               'Your Music Taste',
               textAlign: TextAlign.center,
@@ -46,9 +47,7 @@ class _QuestionTwoPageState extends State<QuestionTwoPage> {
                   fontSize: 40,
                   fontWeight: FontWeight.bold),
             ),
-            const SizedBox(
-              height: 40,
-            ),
+            const Spacer(),
             // Image Slider
             Stack(
               alignment: Alignment.center,
@@ -93,9 +92,7 @@ class _QuestionTwoPageState extends State<QuestionTwoPage> {
               ],
             ),
 
-            const SizedBox(
-              height: 40,
-            ),
+            const Spacer(),
 
             // Follow up Text
             Padding(
@@ -120,9 +117,7 @@ class _QuestionTwoPageState extends State<QuestionTwoPage> {
                 ]),
               ),
             ),
-            const SizedBox(
-              height: 40,
-            ),
+            const Spacer(),
 
             // Button to Choose
             WideDarkBackgroundButton(
@@ -139,7 +134,8 @@ class _QuestionTwoPageState extends State<QuestionTwoPage> {
                   ),
                 );
               },
-            )
+            ),
+            const Spacer()
           ],
         )))));
   }

@@ -37,6 +37,7 @@ class _QuestionFourPageState extends State<QuestionFourPage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             // Heading
+            const Spacer(),
             const Text(
               'Intellectual Interests',
               style: TextStyle(
@@ -44,9 +45,7 @@ class _QuestionFourPageState extends State<QuestionFourPage> {
                   fontSize: 35,
                   fontWeight: FontWeight.bold),
             ),
-            const SizedBox(
-              height: 40,
-            ),
+            const Spacer(),
             // Image Slider
             Stack(
               alignment: Alignment.center,
@@ -91,9 +90,7 @@ class _QuestionFourPageState extends State<QuestionFourPage> {
               ],
             ),
 
-            const SizedBox(
-              height: 40,
-            ),
+            const Spacer(),
 
             // Follow up Text
             Padding(
@@ -118,9 +115,7 @@ class _QuestionFourPageState extends State<QuestionFourPage> {
                 ]),
               ),
             ),
-            const SizedBox(
-              height: 40,
-            ),
+            const Spacer(),
 
             // Button to Choose
             WideDarkBackgroundButton(
@@ -137,7 +132,8 @@ class _QuestionFourPageState extends State<QuestionFourPage> {
                   ),
                 );
               },
-            )
+            ),
+            const Spacer()
           ],
         )))));
   }

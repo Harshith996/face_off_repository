@@ -37,6 +37,7 @@ class _QuestionThreePageState extends State<QuestionThreePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             // Heading
+            const Spacer(),
             const Text(
               'Hanging Out',
               style: TextStyle(
@@ -44,9 +45,7 @@ class _QuestionThreePageState extends State<QuestionThreePage> {
                   fontSize: 40,
                   fontWeight: FontWeight.bold),
             ),
-            const SizedBox(
-              height: 40,
-            ),
+            const Spacer(),
             // Image Slider
             Stack(
               alignment: Alignment.center,
@@ -91,9 +90,7 @@ class _QuestionThreePageState extends State<QuestionThreePage> {
               ],
             ),
 
-            const SizedBox(
-              height: 40,
-            ),
+            const Spacer(),
 
             // Follow up Text
             Padding(
@@ -119,9 +116,7 @@ class _QuestionThreePageState extends State<QuestionThreePage> {
                 ]),
               ),
             ),
-            const SizedBox(
-              height: 40,
-            ),
+            const Spacer(),
 
             // Button to Choose
             WideDarkBackgroundButton(
@@ -138,7 +133,8 @@ class _QuestionThreePageState extends State<QuestionThreePage> {
                   ),
                 );
               },
-            )
+            ),
+            const Spacer(),
           ],
         )))));
   }

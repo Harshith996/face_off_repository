@@ -2,6 +2,7 @@ import 'package:face_off/ui/screens/anonymous_chat_page.dart';
 import 'package:face_off/ui/screens/chat_page.dart';
 import 'package:face_off/ui/screens/dashboard_page.dart';
 import 'package:face_off/ui/screens/otp_verification.dart';
+import 'package:face_off/ui/screens/question_1.dart';
 import 'package:face_off/ui/screens/scheduling_page.dart';
 import 'package:face_off/ui/screens/signup_page.dart';
 import 'package:face_off/ui/screens/splash_screen.dart';
@@ -30,13 +31,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
-      home: TakePictureScreen(camera: firstCamera),
-    );
+        debugShowCheckedModeBanner: false,
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+          visualDensity: VisualDensity.adaptivePlatformDensity,
+        ),
+        home: QuestionOnePage());
   }
 }

@@ -39,6 +39,7 @@ class _QuestionOnePageState extends State<QuestionOnePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             // Heading
+            const Spacer(),
             const Text(
               'Pick a Place',
               style: TextStyle(
@@ -46,9 +47,7 @@ class _QuestionOnePageState extends State<QuestionOnePage> {
                   fontSize: 40,
                   fontWeight: FontWeight.bold),
             ),
-            const SizedBox(
-              height: 40,
-            ),
+            const Spacer(),
             // Image Slider
             Stack(
               alignment: Alignment.center,
@@ -93,9 +92,7 @@ class _QuestionOnePageState extends State<QuestionOnePage> {
               ],
             ),
 
-            const SizedBox(
-              height: 20,
-            ),
+            const Spacer(),
 
             // Follow up Text
             Padding(
@@ -121,9 +118,7 @@ class _QuestionOnePageState extends State<QuestionOnePage> {
                 ]),
               ),
             ),
-            const SizedBox(
-              height: 40,
-            ),
+            const Spacer(),
 
             // Button to Choose
             WideDarkBackgroundButton(
@@ -140,7 +135,8 @@ class _QuestionOnePageState extends State<QuestionOnePage> {
                   ),
                 );
               },
-            )
+            ),
+            const Spacer()
           ],
         )))));
   }

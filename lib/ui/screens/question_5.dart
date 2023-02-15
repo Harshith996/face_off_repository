@@ -38,6 +38,7 @@ class _QuestionFivePageState extends State<QuestionFivePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             // Heading
+            const Spacer(),
             const Text(
               'Hobbies',
               style: TextStyle(
@@ -45,9 +46,7 @@ class _QuestionFivePageState extends State<QuestionFivePage> {
                   fontSize: 40,
                   fontWeight: FontWeight.bold),
             ),
-            const SizedBox(
-              height: 40,
-            ),
+            const Spacer(),
             // Image Slider
             Stack(
               alignment: Alignment.center,
@@ -92,9 +91,7 @@ class _QuestionFivePageState extends State<QuestionFivePage> {
               ],
             ),
 
-            const SizedBox(
-              height: 40,
-            ),
+            const Spacer(),
 
             // Follow up Text
             Padding(
@@ -115,9 +112,7 @@ class _QuestionFivePageState extends State<QuestionFivePage> {
                 ]),
               ),
             ),
-            const SizedBox(
-              height: 40,
-            ),
+            const Spacer(),
 
             // Button to Choose
             WideDarkBackgroundButton(
@@ -134,7 +129,8 @@ class _QuestionFivePageState extends State<QuestionFivePage> {
                   ),
                 );
               },
-            )
+            ),
+            const Spacer()
           ],
         )))));
   }
