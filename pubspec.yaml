@@ -47,6 +47,8 @@ dependencies:
   socket_io_client: ^2.0.1
   xmpp_plugin: ^2.2.6
   camera: ^0.10.3
+  path_provider: ^2.0.12
+  image_picker: ^0.8.6+1
   
 
 dev_dependencies:
