@@ -1,4 +1,5 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:face_off/ui/screens/question_1.dart';
 import 'package:face_off/ui/shared/widgets/wide_dark_background_button.dart';
 import 'package:face_off/ui/shared/color_items/circular_top_down_gradient.dart';
 import 'package:face_off/utils/constants.dart';
@@ -120,7 +121,10 @@ class _CreateProfileState extends State<CreateProfile> {
             // Button to Choose
             WideDarkBackgroundButton(
               displayText: "Continue",
-              onTap: () {},
+              onTap: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => QuestionOnePage()));
+              },
             )
           ],
         )))));

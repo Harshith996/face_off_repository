@@ -1,6 +1,7 @@
 // ignore_for_file: non_constant_identifier_names
 
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:face_off/ui/screens/create_profile_1.dart';
 import 'package:face_off/ui/screens/loading_page.dart';
 import 'package:face_off/ui/screens/profile_complete_page.dart';
 import 'package:face_off/ui/screens/question_1.dart';
@@ -122,7 +123,7 @@ class _QuestionFivePageState extends State<QuestionFivePage> {
                 Navigator.pushReplacement(
                   context,
                   PageRouteBuilder(
-                    pageBuilder: (c, a1, a2) => const ProfileCompletePage(),
+                    pageBuilder: (c, a1, a2) => const LoadingPage(),
                     transitionsBuilder: (c, anim, a2, child) =>
                         FadeTransition(opacity: anim, child: child),
                     transitionDuration: const Duration(milliseconds: 1000),
