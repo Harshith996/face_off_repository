@@ -12,13 +12,13 @@ import 'package:flutter/material.dart';
 import 'package:face_off/ui/screens/take_picture_screen.dart';
 import 'package:camera/camera.dart';
 
-// var firstCamera;
+var firstCamera;
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   // Obtain a list of the available cameras on the device.
 
-  // final cameras = await availableCameras();
-  // firstCamera = cameras.first;
+  final cameras = await availableCameras();
+  firstCamera = cameras[1];
 
   // Get a specific camera from the list of available cameras.
 
@@ -38,6 +38,8 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.blue,
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
-        home: CreateProfile());
+        home: TakePictureScreen(
+          camera: firstCamera,
+        ));
   }
 }
