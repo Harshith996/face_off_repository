@@ -38,8 +38,6 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.blue,
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
-        home: TakePictureScreen(
-          camera: firstCamera,
-        ));
+        home: CreateProfile());
   }
 }

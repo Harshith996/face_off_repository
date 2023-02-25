@@ -123,7 +123,7 @@ class _QuestionFivePageState extends State<QuestionFivePage> {
                 Navigator.pushReplacement(
                   context,
                   PageRouteBuilder(
-                    pageBuilder: (c, a1, a2) => const LoadingPage(),
+                    pageBuilder: (c, a1, a2) => const ProfileCompletePage(),
                     transitionsBuilder: (c, anim, a2, child) =>
                         FadeTransition(opacity: anim, child: child),
                     transitionDuration: const Duration(milliseconds: 1000),
