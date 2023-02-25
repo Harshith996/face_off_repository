@@ -1,3 +1,4 @@
+import 'package:face_off/ui/screens/create_profile_1.dart';
 import 'package:face_off/ui/screens/question_1.dart';
 import 'package:face_off/ui/screens/signup_page.dart';
 import 'package:face_off/ui/shared/widgets/divider.dart';
@@ -144,7 +145,7 @@ class OtpVerification extends StatelessWidget {
       Navigator.pushReplacement(
         context,
         PageRouteBuilder(
-          pageBuilder: (c, a1, a2) => const QuestionOnePage(),
+          pageBuilder: (c, a1, a2) => const CreateProfile(),
           transitionsBuilder: (c, anim, a2, child) =>
               FadeTransition(opacity: anim, child: child),
           transitionDuration: const Duration(milliseconds: 1000),

@@ -91,12 +91,6 @@ class ActiveChat extends StatelessWidget {
                               color: const Color(CustomColors.background)),
                         ),
                       ),
-                      // CircleAvatar(
-                      //   radius: 3,
-                      //   backgroundColor: flip
-                      //       ? const Color(CustomColors.green)
-                      //       : const Color(CustomColors.grey),
-                      // )
                     ],
                   )
                 ],

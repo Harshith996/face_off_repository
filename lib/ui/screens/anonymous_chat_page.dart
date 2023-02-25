@@ -120,6 +120,7 @@ class _AnonymousChatPageState extends State<AnonymousChatPage> {
                           ),
 
                           GestureDetector(
+                            behavior: HitTestBehavior.opaque,
                             onTap: () {
                               Navigator.push(
                                   context,
@@ -184,6 +185,7 @@ class _AnonymousChatPageState extends State<AnonymousChatPage> {
                           ),
 
                           GestureDetector(
+                            behavior: HitTestBehavior.opaque,
                             onTap: () {
                               Navigator.push(
                                   context,
