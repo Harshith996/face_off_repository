@@ -31,7 +31,7 @@ PODS:
   - shared_preferences_foundation (0.0.1):
     - Flutter
     - FlutterMacOS
-  - xmpp_plugin (2.2.6):
+  - xmpp_plugin (2.2.7):
     - Flutter
     - XMPPFramework/Swift
   - XMPPFramework/default (4.0.0):
@@ -83,19 +83,19 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/xmpp_plugin/ios"
 
 SPEC CHECKSUMS:
-  camera_avfoundation: 07c77549ea54ad95d8581be86617c094a46280d9
+  camera_avfoundation: 82dc5597033fe2dcdcca6e41f7e464d0855e74ad
   CocoaAsyncSocket: 065fd1e645c7abab64f7a6a2007a48038fdc6a99
   CocoaLumberjack: 78abfb691154e2a9df8ded4350d504ee19d90732
   device_info_plus: e5c5da33f982a436e103237c0c85f9031142abed
   Flutter: f04841e97a9d0b0a8025694d0796dd46242b2854
-  image_picker_ios: b786a5dcf033a8336a657191401bfdf12017dabb
+  image_picker_ios: 58b9c4269cb176f89acea5e5d043c9358f2d25f8
   KissXML: 5c8e0f2e8b9f071d3e1ae123dec3eb5da615c10c
   libidn: e4576a956b797c584c77aaedfc6e3dd639b61bdc
-  path_provider_foundation: 37748e03f12783f9de2cb2c4eadfaa25fe6d4852
+  path_provider_foundation: c68054786f1b4f3343858c1e1d0caaded73f0be9
   permission_handler_apple: 44366e37eaf29454a1e7b1b7d736c2cceaeb17ce
   share_plus: 056a1e8ac890df3e33cb503afffaf1e9b4fbae68
-  shared_preferences_foundation: 297b3ebca31b34ec92be11acd7fb0ba932c822ca
-  xmpp_plugin: b551e4fbe91962c7506c1edfc6e74d147d6a61ab
+  shared_preferences_foundation: 986fc17f3d3251412d18b0265f9c64113a8c2472
+  xmpp_plugin: 14b53d51169050b8bc85ebc4189e334c95519528
   XMPPFramework: 5d31ff9f73dce031b24bc49bcf88093627a3a86e
 
 PODFILE CHECKSUM: ef19549a9bc3046e7bb7d2fab4d021637c0c58a3

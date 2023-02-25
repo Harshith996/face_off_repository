@@ -1,9 +1,17 @@
+import 'dart:convert';
+
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:face_off/ui/screens/loading_page.dart';
 import 'package:face_off/ui/screens/question_1.dart';
+import 'package:face_off/ui/screens/signup_page.dart';
 import 'package:face_off/ui/shared/widgets/wide_dark_background_button.dart';
 import 'package:face_off/ui/shared/color_items/circular_top_down_gradient.dart';
 import 'package:face_off/utils/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import '../../utils/apis.dart';
+import '../../utils/shared_prefs.dart';
+import 'otp_verification.dart';
 
 class CreateProfile extends StatefulWidget {
   const CreateProfile({Key? key}) : super(key: key);
@@ -63,7 +71,7 @@ class _CreateProfileState extends State<CreateProfile> {
                   carouselController: carouselController,
                   itemCount: anonymous_icons.length,
                   itemBuilder: (context, index, realIndex) {
-                    final imgPath = anonymous_icons[index];
+                    var imgPath = anonymous_icons[index];
                     return buildImage(imgPath, index);
                   },
                   options: CarouselOptions(
@@ -122,6 +130,7 @@ class _CreateProfileState extends State<CreateProfile> {
             WideDarkBackgroundButton(
               displayText: "Continue",
               onTap: () {
+                updateAnonyIcon(context, activeIndex);
                 Navigator.push(context,
                     MaterialPageRoute(builder: (context) => QuestionOnePage()));
               },
@@ -140,4 +149,38 @@ Widget buildImage(String imgPath, int index) {
         radius: 120,
         backgroundImage: Image.asset(imgPath).image,
       )));
+}
+
+Future updateAnonyIcon(BuildContext context, int anony_icon) async {
+  final headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/x-www-form-urlencoded"
+  };
+  final form = [];
+  int user_id = SharedPrefs().id;
+  form.add("user_id=$user_id");
+  form.add("anony_icon=$anony_icon");
+
+  final body = form.join('&');
+
+  final response = await http.post(Uri.parse(ApiUrls.url_update_anon_icon),
+      headers: headers, body: body);
+  final responseJSON = json.decode(response.body);
+  print(responseJSON['error']);
+  print(response.body);
+  if (responseJSON['error'] == false) {
+    // ignore: use_build_context_synchronously
+    Navigator.pushReplacement(
+      context,
+      PageRouteBuilder(
+        pageBuilder: (c, a1, a2) => QuestionOnePage(),
+        transitionsBuilder: (c, anim, a2, child) =>
+            FadeTransition(opacity: anim, child: child),
+        transitionDuration: const Duration(milliseconds: 1000),
+      ),
+    );
+    print("Sweet");
+  } else {
+    print(responseJSON['message']);
+  }
 }
