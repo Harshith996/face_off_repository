@@ -2,6 +2,7 @@
 
 import 'dart:async';
 
+import 'package:face_off/ui/screens/anonymous_chat_page.dart';
 import 'package:face_off/ui/screens/dashboard_page.dart';
 import 'package:face_off/ui/screens/login_page.dart';
 import 'package:face_off/ui/screens/signup_page.dart';
@@ -77,7 +78,7 @@ Future<void> checkIsLogin(context) async {
         () => Navigator.pushReplacement(
               context,
               PageRouteBuilder(
-                pageBuilder: (c, a1, a2) => const DashboardPage(),
+                pageBuilder: (c, a1, a2) => const AnonymousChatPage(),
                 transitionsBuilder: (c, anim, a2, child) =>
                     FadeTransition(opacity: anim, child: child),
                 transitionDuration: const Duration(milliseconds: 1000),
