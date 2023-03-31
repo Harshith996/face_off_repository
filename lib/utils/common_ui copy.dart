@@ -1,13 +1,13 @@
 // ignore_for_file: depend_on_referenced_packages
 
-import 'dart:html';
+// import 'dart:html';
 import 'package:camera/camera.dart';
 import 'package:face_off/ui/screens/anonymous_chat_page.dart';
 import 'package:face_off/ui/screens/chat_page.dart';
 import 'package:face_off/ui/screens/take_picture_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:photo_manager/photo_manager.dart';
+// import 'package:photo_manager/photo_manager.dart';
 import 'constants.dart';
 
 var firstCamera;
