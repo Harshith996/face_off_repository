@@ -13,6 +13,7 @@ import 'package:face_off/utils/shared_prefs.dart';
 import 'package:flutter/material.dart';
 
 import '../shared/widgets/wide_red_background_button.dart';
+import '../widgets/dashboard_page/ractive_chat.dart';
 
 class AnonymousChatPage extends StatefulWidget {
   const AnonymousChatPage({Key? key}) : super(key: key);

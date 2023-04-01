@@ -11,6 +11,7 @@ import 'package:face_off/utils/shared_prefs.dart';
 import 'package:flutter/material.dart';
 
 import '../shared/widgets/wide_red_background_button.dart';
+import '../widgets/dashboard_page/ractive_chat.dart';
 
 class DashboardPage extends StatefulWidget {
   const DashboardPage({Key? key}) : super(key: key);
