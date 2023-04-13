@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:face_off/ui/screens/reveal_decision_page.dart';
 import 'package:face_off/ui/shared/widgets/circular_gradient_border.dart';
 import 'package:face_off/utils/constants.dart';
 import 'package:flutter/material.dart';
@@ -7,9 +8,6 @@ import 'package:face_off/ui/screens/take_picture_screen.dart';
 import 'package:image_picker/image_picker.dart';
 import '../../../utils/common_ui copy.dart';
 import '../../../utils/common_ui.dart';
-
-List pictures = [];
-List picturesString = [];
 
 class ActiveChat extends StatefulWidget {
   final String name;
@@ -30,25 +28,6 @@ class ActiveChat extends StatefulWidget {
 }
 
 class _ActiveChatState extends State<ActiveChat> {
-  Future pickImage(pictureID) async {
-    try {
-      final picture = await ImagePicker().pickImage(source: ImageSource.camera);
-
-      if (picture == null) return;
-
-      final picTemp = File(picture.path);
-
-      setState(
-        () {
-          pictures[pictureID] = picTemp;
-          picturesString[pictureID] = pictures[pictureID]!.path;
-        },
-      );
-    } catch (err) {
-      print("Error picking Picture from Gallery: $err");
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -108,7 +87,11 @@ class _ActiveChatState extends State<ActiveChat> {
                     children: [
                       ElevatedButton(
                         onPressed: () {
-                          pickImage(0);
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      const RevealDecisionPage()));
                           // showAlertOptionDialog(
                           //     context, "Do you want to reveal your identity?",
                           //     onPressed: () {

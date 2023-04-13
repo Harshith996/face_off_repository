@@ -1,8 +1,8 @@
 import 'package:face_off/utils/constants.dart';
 import 'package:flutter/material.dart';
 
-class WideDarkBackgroundButton extends StatelessWidget {
-  const WideDarkBackgroundButton({
+class SmallButton extends StatelessWidget {
+  const SmallButton({
     super.key,
     required this.displayText,
     required this.onTap,
@@ -13,13 +13,13 @@ class WideDarkBackgroundButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return (Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 40.0),
+      padding: const EdgeInsets.symmetric(horizontal: 22.5),
       child: ElevatedButton(
         onPressed: () {
           onTap();
         },
         style: ElevatedButton.styleFrom(
-          minimumSize: const Size(300, 68),
+          minimumSize: const Size(150, 70),
           shape: const StadiumBorder(),
           backgroundColor: const Color(CustomColors.grey),
 

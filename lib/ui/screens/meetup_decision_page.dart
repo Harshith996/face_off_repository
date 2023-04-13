@@ -1,7 +1,11 @@
+import 'package:face_off/ui/screens/scheduling_page.dart';
 import 'package:face_off/ui/shared/widgets/binary_option_buttons.dart';
 import 'package:face_off/ui/shared/widgets/circular_gradient_border.dart';
+import 'package:face_off/ui/shared/widgets/wide_red_background_button.dart';
 import 'package:face_off/utils/constants.dart';
 import 'package:flutter/material.dart';
+
+import '../shared/widgets/wide_dark_background_button.dart';
 
 class MeetupDecisionPage extends StatefulWidget {
   const MeetupDecisionPage({Key? key}) : super(key: key);
@@ -69,7 +73,14 @@ class _MeetupDecisionPageState extends State<MeetupDecisionPage> {
               const SizedBox(
                 height: 30,
               ),
-              const BinaryOptionButtons(text1: "Yes", text2: "No"),
+              WideDarkBackgroundButton(
+                  displayText: 'Schedule',
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const SchedulingPage()));
+                  }),
               const SizedBox(
                 height: 40,
               ),
@@ -93,8 +104,7 @@ class _MeetupDecisionPageState extends State<MeetupDecisionPage> {
                               'be able to schedule a meeting if your chatting partner says no.',
                           style: TextStyle(
                               color: Color(CustomColors.white), fontSize: 18))
-                    ]
-                    )),
+                    ])),
               ),
               const SizedBox(
                 height: 60,

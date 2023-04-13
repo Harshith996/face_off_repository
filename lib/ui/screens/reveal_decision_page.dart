@@ -1,7 +1,16 @@
+import 'dart:io';
+
+import 'package:face_off/ui/screens/anonymous_chat_page.dart';
 import 'package:face_off/ui/shared/widgets/binary_option_buttons.dart';
 import 'package:face_off/ui/shared/widgets/circular_gradient_border.dart';
+import 'package:face_off/ui/shared/widgets/small_darkbg_button.dart';
+import 'package:face_off/ui/shared/widgets/wide_dark_background_button.dart';
 import 'package:face_off/utils/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
+
+List pictures = [];
+List picturesString = [];
 
 class RevealDecisionPage extends StatefulWidget {
   const RevealDecisionPage({Key? key}) : super(key: key);
@@ -11,6 +20,25 @@ class RevealDecisionPage extends StatefulWidget {
 }
 
 class _RevealDecisionPageState extends State<RevealDecisionPage> {
+  Future pickImage(pictureID) async {
+    try {
+      final picture = await ImagePicker().pickImage(source: ImageSource.camera);
+
+      if (picture == null) return;
+
+      final picTemp = File(picture.path);
+
+      setState(
+        () {
+          pictures[pictureID] = picTemp;
+          picturesString[pictureID] = pictures[pictureID]!.path;
+        },
+      );
+    } catch (err) {
+      print("Error picking Picture from Gallery: $err");
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return (Scaffold(
@@ -59,7 +87,24 @@ class _RevealDecisionPageState extends State<RevealDecisionPage> {
               const SizedBox(
                 height: 30,
               ),
-              const BinaryOptionButtons(text1: "Yes", text2: "No"),
+              Row(
+                children: [
+                  SmallButton(
+                      displayText: 'Yes',
+                      onTap: () {
+                        pickImage(0);
+                      }),
+                  SmallButton(
+                      displayText: 'No',
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    const AnonymousChatPage()));
+                      })
+                ],
+              ),
               const SizedBox(
                 height: 40,
               ),
